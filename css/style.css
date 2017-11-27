@@ -1,82 +1,45 @@
+html {
+  width: 100%
+}
+
 body {
   margin: 0;
   padding: 0;
 }
 
-
-h1, p, div, section, footer {
-  borer: 1px solid red;
-}
-
-
-header {
-  position: absolute;
-  height: 7%;
-  width: 100%;
-  background-color: lightblue;
-}
-
-h1 {
-  margin: 0;
-  text-align: center;
-  font-size: 20px;
-}
-
-h2 {
+#slider {
   position: relative;
-  text-align: center;
-  top: 30%;
-  font-size: 15px;
-}
-
-.slider {
-  position: absolute;
-  transform: translateY(25%);
-  height: 25%;
   width: 100%;
-  background-color: #ccc;
-
+  height: 200px;
+  overflow: hidden;
 }
 
-section {
-}
-
-.booking-panel {
-  position: absolute;
-  transform: translateY(50.7%);
-  height: 61.7%;
+#slider img {
   width: 100%;
+border: 1px solid red;
+  margin-bottom: -4px;
+}
+
+#bandeau {
+  position: absolute;
   display: flex;
 }
 
-.velib-map {
-  width: 70%;
-  background-color: pink;
-}
-
-.side-panel {
-  width: 30%;
-}
-
-.address {
-  height: 60%;
-
-}
-
-.booking-submit {
-  text-align: center;
-}
-
-footer {
+#slider #previous,
+#slider #next {
   position: absolute;
-  height: 7%;
-  bottom: 0;
-  width: 100%;
-  background-color: lightgreen;
+  top: 100px
 }
 
-footer p {
-  text-align: center;
-  padding-top: 6px;
-  margin: 0;
+#slider #previous {
+  left: 0;
+}
+
+#slider #next {
+  right: 0;
+}
+
+.booking-panel,
+footer {
+  display: none;
 }
