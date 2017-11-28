@@ -16,11 +16,11 @@ body {
 
 #slider img {
   width: 100%;
-border: 1px solid red;
   margin-bottom: -4px;
 }
 
-#bandeau {
+#conteneur {
+  border : 1px dotted lightblue;
   position: absolute;
   display: flex;
 }
