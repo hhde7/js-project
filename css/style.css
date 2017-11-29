@@ -6,29 +6,73 @@ body {
   margin: 0;
   padding: 0;
 }
+h1 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 40px;
+  margin-top: 70px;
+  font-weight: lighter;
+}
+/* //////////////////////// LOGO //////////////////////// */
+/* //////////////////////// LOGO //////////////////////// */
+/* //////////////////////// LOGO //////////////////////// */
+
+header {
+  text-align: center;
+  border-bottom: 5px dashed #15a9c3;
+}
+
+#logo {
+  height: 50px;
+  padding: 5px;
+  brder: 1px solid blue;
+}
+
+/* //////////////////////// SLIDER //////////////////////// */
+/* //////////////////////// SLIDER //////////////////////// */
+/* //////////////////////// SLIDER //////////////////////// */
 
 #slider {
-  position: relative;
-  width: 100%;
-  height: 200px;
   overflow: hidden;
 }
 
 #slider img {
-  width: 100%;
-  margin-bottom: -4px;
+  position: relative;
+  z-index: 1;
+  left: 52%;
+  transform: translateX(-50%);
+  padding: 0px 15px 30px 15px;
+  height: 70%;
+  top: 80px;
 }
 
 #conteneur {
-  border : 1px dotted lightblue;
   position: absolute;
-  display: flex;
+  width: 100%;
+  height: 200px;
+  background-color: #15a9c3;
+}
+
+#slider button {
+  background-color: #15a9c3;
+  width: 50px;
+  border: none;
+  color: white;
+  font-size: 23px;
+  height: 200px;
+  outline: none;
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+}
+
+#slider button:hover {
+  color: #4d4a45;
+  font-weight: normal;
+  background-color: rgba(250,250,250,0.2);
 }
 
 #slider #previous,
 #slider #next {
   position: absolute;
-  top: 100px
 }
 
 #slider #previous {
@@ -39,7 +83,96 @@ body {
   right: 0;
 }
 
+/* |||| INDICATIONS DU SLIDER |||| */
+#conteneur h2 {
+  position: absolute;
+  font-family: 'Dosis', sans-serif;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px 10px 5px;
+  background-color: rgba(250,250,250,0.2);
+  border: 1px solid white;
+  border-radius: 3px;
+  margin-left: 60px;
+  margin-right: 60px;
+  top: -15px;
+  box-shadow: 0px 0px 3px 0px white;
+}
+
+.line {
+  border-top: 5px dashed #15a9c3;
+  position: relative;
+  z-index: 0;
+  top: 200px;
+  height: 130px;
+  width: 100%;
+  background-color: #eee;
+  border-bottom: 5px dashed white;
+  text-align: center;
+}
+
+
 .booking-panel,
 footer {
   display: none;
+}
+
+/* //////////////////////// MEDIA QUERIES //////////////////////// */
+/* //////////////////////// MEDIA QUERIES //////////////////////// */
+/* //////////////////////// MEDIA QUERIES //////////////////////// */
+@media screen and (min-width: 560px) and (max-width: 767px) {
+  #slider img {
+    left: 67%;
+    height: 100%;
+    top: 27px;
+  }
+  #conteneur h2 {
+    padding: 10px;
+    top: 20px;
+    width: 164px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  #slider img {
+    left: 70%;
+    height: 120%;
+    top: 0px;
+  }
+  #conteneur h2 {
+    font-size: 27px;
+    padding: 10px;
+    left: 8%;
+    top: 15px;
+    width: 170px;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+  #slider img {
+    left: 75%;
+    height: 120%;
+    top: 0px;
+  }
+  #conteneur h2 {
+    font-size: 27px;
+    padding: 20px;
+    left: 9%;
+    top: 23px;
+    width: 270px;
+  }
+}
+@media screen and (min-width: 1281px) {
+  #slider img {
+    left: 25%;
+    height: 150%;
+    top: -50px;
+  }
+  #conteneur h2 {
+    font-size: 27px;
+    padding: 20px;
+
+    right: 5%;
+    top: 40px;
+    width: 470px;
+  }
 }
