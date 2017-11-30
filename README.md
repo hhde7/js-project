@@ -1,4 +1,10 @@
 # Projet de carte interactive codé en javascript
 
-L'application permettra de réserver un vélo sur le réseau vélib' de Paris, à partir d'une carte qui affiche les stations, ainsi que les disponibilités en vélos (et en emplacements libres).
+L'application permettra de réserver un vélo sur le réseau vélib' de Paris.
 
+Le projet comprendra :
+- Un slider explicatif en en-tête
+- Une carte du réseau affichant les stations (lieu, nom, état...)
+- Un panneau à droite de la carte indiquera les vélos disponibles. Un bouton 'Réserver' affichera un encart de type canvas
+- L'encart canvas permettra à l'utilisateur de signer pour valider sa réservation
+- Un footer affichera le décompte du temps restant avant l'annulation de la réservation 
