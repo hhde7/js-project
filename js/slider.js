@@ -1,4 +1,4 @@
-// Tableaux des objets images
+// Tableaux des objets slide
 var slides = [
   {
     src: "images/credited/sources/optimise/velib-bleu1.png",
@@ -7,23 +7,25 @@ var slides = [
     text : "Choisir une station sur la carte",
     imgId : "current-slide",
     txtId : "current-text",
-
+    parentId : "conteneur",
   },
   {
     src: "images/credited/sources/optimise/velib-bleu2.png",
     alt: "Vélib sur les quais",
-    title : "Vélib' 2018",
+    title : "Vélib' 2018 - Version électrique",
     text : "Vérifier qu'un vélo est disponible",
     imgId : "current-slide",
     txtId : "current-text",
+    parentId : "conteneur",
   },
   {
     src: "images/credited/sources/optimise/velib-vert1.png",
     alt: "Vélib sur les quais",
-    title : "Vélib' 2018 - Version électrique",
-    text : "Cliquer sur réserver et signer",
+    title : "Vélib' 2018 - Version classique",
+    text : "Cliquer sur réserver puis signer",
     imgId : "current-slide",
     txtId : "current-text",
+    parentId : "conteneur",
   },
   {
     src: "images/credited/sources/optimise/borne3.png",
@@ -32,6 +34,7 @@ var slides = [
     text : "Votre vélo est réservé pendant 20 minutes !",
     imgId : "current-slide",
     txtId : "current-text",
+    parentId : "conteneur",
   }
 ];
 
@@ -63,71 +66,77 @@ function createNewSlide (number) {
     slides[number].text,
     slides[number].imgId,
     slides[number].txtId,
-    "conteneur");
+    slides[number].parentId
+  );
+};
+
+// Suppression de la slide actuelle
+function removeCurrentSlide () {
+  var idElt = document.getElementById("current-slide");
+  var txtIdElt = document.getElementById("current-text");
+  idElt.parentNode.removeChild(idElt);
+  txtIdElt.parentNode.removeChild(txtIdElt);
+};
+
+// Slide par défaut => premier objet du tableau slides
+var slideNumber = 0;
+// Nouvelle variable pour palier l'oubli de slideNumber (erreur undefined dans les EventListeners)
+var numberArg = slideNumber;
+
+createNewSlide(numberArg);
+
+// Variables des boutons du slider
+var boutonPrevious = document.getElementById("previous");
+var boutonNext = document.getElementById("next");
+
+// Fonctions du slider
+function nextSlide () {
+  numberArg ++;
+  if (numberArg < slides.length) {
+    removeCurrentSlide();
+    createNewSlide(numberArg);
+  } else {
+    numberArg = 0; // Retour à la slide n°1
+    removeCurrentSlide();
+    createNewSlide(numberArg);
   };
+};
 
-  // Suppression de la slide actuelle
-  function removeCurrentSlide () {
-    var idElt = document.getElementById("current-slide");
-    var txtIdElt = document.getElementById("current-text");
-    idElt.parentNode.removeChild(idElt);
-    txtIdElt.parentNode.removeChild(txtIdElt);
+function previousSlide() {
+  numberArg --;
+  if (numberArg >= 0) {
+    removeCurrentSlide();
+    createNewSlide(numberArg);
+  } else {
+    numberArg = slides.length - 1; // Saut vers la dernière slide
+    removeCurrentSlide();
+    createNewSlide(numberArg);
   };
+};
 
-  // Slide par défaut => premier objet du tableau slides
-  var slideNumber = 0;
-  // Nouvelle variable pour palier l'oubli de slideNumber (erreur undefined dans les EventListeners)
-  var numberArg = slideNumber;
+// Ecoute des boutons
+boutonNext.addEventListener("click", function () {
+  nextSlide();
+  clearInterval(animSlider);
+});
 
-  createNewSlide(numberArg);
+boutonPrevious.addEventListener("click", function () {
+  previousSlide();
+  clearInterval(animSlider);
+});
 
-  // Variables des boutons du slider
-  var boutonPrevious = document.getElementById("previous");
-  var boutonNext = document.getElementById("next");
-
-  // Fonctions du slider
-  function nextSlide () {
-    numberArg ++;
-    if (numberArg < slides.length) {
-      removeCurrentSlide();
-      createNewSlide(numberArg);
-    } else {
-      numberArg = 0; // Retour à la slide n°1
-      removeCurrentSlide();
-      createNewSlide(numberArg);
-    };
-  };
-
-  function previousSlide() {
-    numberArg --;
-    if (numberArg >= 0) {
-      removeCurrentSlide();
-      createNewSlide(numberArg);
-    } else {
-      numberArg = slides.length - 1; // Saut vers la dernière slide
-      removeCurrentSlide();
-      createNewSlide(numberArg);
-    };
-  };
-
-  // Ecoute des boutons
-  boutonNext.addEventListener("click", function () {
-    nextSlide();
-  });
-
-  boutonPrevious.addEventListener("click", function () {
+// Ecoute des touches '< >' et '4 6' du clavier
+document.addEventListener("keydown", function (e) {
+  if (e.keyCode === 37 || e.keyCode === 100 ) {
     previousSlide();
-  });
+    clearInterval(animSlider);
+  } else if (e.keyCode === 39 || e.keyCode === 102 ) {
+    nextSlide();
+    clearInterval(animSlider);
+  } else {
+    console.log("La touche " + e.keyCode + " n'est pas prise en compte");
+  };
+});
 
-  // Ecoute des touches '< >' et '4 6' du clavier
-  document.addEventListener("keydown", function (e) {
-    if (e.keyCode === 37 || e.keyCode === 100 ) {
-      previousSlide();
-    } else if (e.keyCode === 39 || e.keyCode === 102 ) {
-      nextSlide();
-    } else {
-      console.log("La touche " + e.keyCode + " n'est pas prise en compte");
-    };
-  });
-
-setInterval(function() { nextSlide();  },  5000);
+// Animation du slider au chargment de la page (désactivée après commande manuelle)
+var animSlider = setInterval(function() { nextSlide();  },  5000);

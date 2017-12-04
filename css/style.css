@@ -1,3 +1,9 @@
+/* A FAIRE
+
+=> Préfixage
+
+*/
+
 html {
   width: 100%
 }
@@ -22,9 +28,9 @@ header {
 }
 
 #logo {
-  height: 50px;
+  position: relative;
   padding: 5px;
-  brder: 1px solid blue;
+  height: 80px;
 }
 
 /* //////////////////////// SLIDER //////////////////////// */
@@ -115,8 +121,18 @@ header {
 
 .booking-panel,
 footer {
-  display: none;
+  position:relative;
+  top: 195px;
+
+
 }
+
+#map {
+
+  height: 400px;
+  width: 100%;
+}
+
 
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
@@ -148,6 +164,9 @@ footer {
   }
 }
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
+  #logo {
+    height: 89px;
+  }
   #slider img {
     left: 75%;
     height: 120%;
@@ -162,8 +181,11 @@ footer {
   }
 }
 @media screen and (min-width: 1281px) {
+  #logo {
+    height: 89px;
+  }
   #slider img {
-    left: 25%;
+    left: 75%;
     height: 150%;
     top: -50px;
   }
@@ -171,7 +193,7 @@ footer {
     font-size: 27px;
     padding: 20px;
 
-    right: 5%;
+    left: 9%;
     top: 40px;
     width: 470px;
   }

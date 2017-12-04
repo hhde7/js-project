@@ -49,7 +49,9 @@
 <body>
 
   <header>
-    <img id="logo" src="E:/Cours/Eleve/OC/DWJ/projet-3/wamp64/www/velib-paris/images/credited/sources/velib-logo-small.PNG" alt="Logo Velib' 2018">
+    <div>
+      <a href="#"><img id="logo" src="images/credited/sources/velib-logo-small.png" alt="Logo Velib' 2018"></a>
+    </div>
   </header>
 
   <section id="slider">
@@ -70,11 +72,10 @@
     <h1>Stations Vélib'</h1>
   </div>
   <section class="booking-panel">
-    <div class="velib-map">
-      <h2>Map</h2>
-    </div>
+    <div id="velib-map"></div>
+    <h3 id="map">Map</h3>
     <aside class="side-panel">
-      <div class="address">
+      <div id="addressStation">
         <h2>Détails de la station</h2>
       </div>
       <div class="booking-submit">
@@ -88,7 +89,14 @@
 
   </footer>
 
+  <script src="js/ajax.js"></script>
+
   <script src="js/slider.js"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt0VFP_O7Iq_2iONCtXWqcGfIe341WN04&callback=initMap"></script>
+  <script src="js/gmaps.js"></script>
+
 </body>
 
 </html>
