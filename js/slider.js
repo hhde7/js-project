@@ -7,7 +7,7 @@ var slides = [
     text : "Choisir une station sur la carte",
     imgId : "current-slide",
     txtId : "current-text",
-    parentId : "conteneur",
+    parentId : "conteneur"
   },
   {
     src: "images/credited/sources/optimise/velib-bleu2.png",
@@ -16,7 +16,7 @@ var slides = [
     text : "Vérifier qu'un vélo est disponible",
     imgId : "current-slide",
     txtId : "current-text",
-    parentId : "conteneur",
+    parentId : "conteneur"
   },
   {
     src: "images/credited/sources/optimise/velib-vert1.png",
@@ -25,7 +25,7 @@ var slides = [
     text : "Cliquer sur réserver puis signer",
     imgId : "current-slide",
     txtId : "current-text",
-    parentId : "conteneur",
+    parentId : "conteneur"
   },
   {
     src: "images/credited/sources/optimise/borne3.png",
@@ -34,7 +34,7 @@ var slides = [
     text : "Votre vélo est réservé pendant 20 minutes !",
     imgId : "current-slide",
     txtId : "current-text",
-    parentId : "conteneur",
+    parentId : "conteneur"
   }
 ];
 
