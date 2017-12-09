@@ -55,19 +55,25 @@
   </header>
 
   <section id="slider-1">
-
-
-
   </section>
   <div class="line">
     <h1>Stations Vélib'</h1>
   </div>
   <section class="booking-panel">
-    <div id="velib-map"></div>
-    <h3 id="map">Map</h3>
+    <div id="map"></div>
     <aside class="side-panel">
-      <div id="addressStation">
-        <h2>Détails de la station</h2>
+      <div id="station-details">
+        <h2 id="notice">-- Cliquez sur une station --</h2>
+        <p>ÉTAT : <span id="status"></span</p>
+        <p>NOM : <span id="name"></span></p>
+        <p>VÉLOS DISPONIBLES : <span id="bikesOk"></span></p>
+        <p>EMPLACEMENTS LIBRES : <span id="standsOk"></span></p>
+        <p>ADRESSE : <span id="address"></span></p>
+        <p>COORDONNÉES GPS : </p>
+        <div id="gpsLat"></div>
+        <div id="gpsLng"></div>
+
+
       </div>
       <div class="booking-submit">
         <button>Réserver</button>

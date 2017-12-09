@@ -78,7 +78,7 @@ var Slider = {
         Slider.nextSlide();
         clearInterval(animSlider);
       } else {
-        console.log("La touche " + e.keyCode + " n'est pas prise en compte");
+
       };
     });
   },
@@ -149,5 +149,5 @@ Slider.slide(
   slides[i].title,
   slides[i].text
 );
-// Animation du slider au chargment de la page (désactivée après commande manuelle)
+// Animation du slider au chargement de la page (désactivée après commande manuelle)
 var animSlider = setInterval(function() { Slider.nextSlide();  },  5000);

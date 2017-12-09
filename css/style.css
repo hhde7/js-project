@@ -15,7 +15,7 @@ body {
 h1 {
   font-family: 'Dosis', sans-serif;
   font-size: 40px;
-  margin-top: 70px;
+  margin-top: 20px;
   font-weight: lighter;
 }
 /* //////////////////////// LOGO //////////////////////// */
@@ -112,28 +112,68 @@ header {
   position: relative;
   z-index: -2;
   top: 200px;
-  height: 130px;
+  height: 80px;
   width: 100%;
   background-color: #eee;
-  border-bottom: 5px dashed white;
+  /*border-bottom: 5px dashed white;*/
   text-align: center;
 }
-
 
 .booking-panel,
 footer {
   position:relative;
-  top: 195px;
-
-
+  top: 200px;
 }
-
+/*                            */
 #map {
-
-  height: 400px;
-  width: 100%;
+  height: 550px;
+  width: 70%;
+}
+/*                         /*/
+.side-panel {
+  position: relative;
+  float: right;
+  width: 30%;
+  height: 550px;
+  top: -550px;
+  background-color: #84a659;
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+  margin-left: 50px;
 }
 
+#station-details {
+  color: white;
+  background-color: rgba(250,250,250,0.2);
+  border: 1px dashed white;
+  border-radius: 3px;
+  margin: 15px;
+}
+
+#station-details p {
+  text-align: left;
+  margin-left: 20px;
+}
+
+#station-details div {
+  text-align: left;
+  position: relative;
+  top: -36px;
+  left: 160px;
+  color: black;
+  font-weight: bold;
+}
+
+#station-details h2,
+#station-details span {
+  color: black;
+  font-weight: bold;
+}
+
+#station-details #status {
+  padding: 2px;
+  color: white;
+}
 
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
