@@ -11,11 +11,12 @@ html {
 body {
   margin: 0;
   padding: 0;
+  color: rgb(37,37,37);
 }
 h1 {
   font-family: 'Dosis', sans-serif;
-  font-size: 40px;
-  margin-top: 20px;
+  font-size: 25px;
+  margin-top: 37px;
   font-weight: lighter;
 }
 /* //////////////////////// LOGO //////////////////////// */
@@ -23,6 +24,7 @@ h1 {
 /* //////////////////////// LOGO //////////////////////// */
 
 header {
+  background-color: rgb(30,30,30);
   text-align: center;
   border-bottom: 5px dashed #15a9c3;
   z-index: -1;
@@ -31,7 +33,7 @@ header {
 #logo {
   position: relative;
   padding: 5px;
-  height: 80px;
+  height: 40px;
 }
 
 /* //////////////////////// SLIDER //////////////////////// */
@@ -115,7 +117,6 @@ header {
   height: 80px;
   width: 100%;
   background-color: #eee;
-  /*border-bottom: 5px dashed white;*/
   text-align: center;
 }
 
@@ -124,55 +125,79 @@ footer {
   position:relative;
   top: 200px;
 }
-/*                            */
+/* CARTE GMAP */
 #map {
-  height: 550px;
-  width: 70%;
+  height: 350px;
+  width: 100%;
 }
-/*                         /*/
+
+/* PANNEAU DÉTAILS STATION */
 .side-panel {
   position: relative;
-  float: right;
-  width: 30%;
-  height: 550px;
-  top: -550px;
   background-color: #84a659;
   font-family: 'Dosis', sans-serif;
   text-align: center;
-  margin-left: 50px;
 }
 
 #station-details {
+  position: relative;
   color: white;
   background-color: rgba(250,250,250,0.2);
   border: 1px dashed white;
   border-radius: 3px;
-  margin: 15px;
+  margin: 0 15px 30px 15px;
+  top: 15px;
+  padding-bottom: 15px;
+  height: 280px;
 }
 
 #station-details p {
   text-align: left;
-  margin-left: 20px;
+  margin-left: 5%;
 }
 
-#station-details div {
-  text-align: left;
-  position: relative;
-  top: -36px;
-  left: 160px;
-  color: black;
-  font-weight: bold;
+#station-details h2 {
+  font-weight: normal;
+  font-size: 25px;
+  margin-top: 10px;
 }
-
-#station-details h2,
 #station-details span {
-  color: black;
+  color: rgb(37,37,37);
   font-weight: bold;
 }
 
 #station-details #status {
-  padding: 2px;
+  padding: 2px 5px;
   color: white;
+  border-radius: 3px;
+}
+
+.bikes-results {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bikes-results div {
+  text-align: center;
+}
+
+#station-details #bikesOk,
+#station-details #standsOk {
+  font-size: 50px;
+}
+
+.booking-submit button {
+  font-family: 'Dosis', sans-serif;
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #4a15c3;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 93%;
+  padding: 18px;
+  outline: none;
 }
 
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
@@ -190,6 +215,7 @@ footer {
     width: 164px;
   }
 }
+
 @media screen and (min-width: 768px) and (max-width: 1024px){
   #slider-1 img {
     left: 70%;
@@ -203,10 +229,41 @@ footer {
     top: 15px;
     width: 170px;
   }
+  .map-title-container {
+    width: 65%;
+  }
+  #map {
+    height: 650px;
+    width: 100%;
+    width: 65%;
+  }
+  .side-panel {
+    float: right;
+    width: 35%;
+    height: 650px;
+    top: -650px;
+  }
+  #station-details {
+    margin: 0 15px 30px 15px;
+    top: 15px;
+    padding-bottom: 15px;
+    height: 425px;
+  }
+  #station-details h2 {
+    padding-bottom: 20px;
+  }
+  #station-details .bikes-results {
+    padding-bottom: 32px;
+    padding-top: 16px;
+  }
+  .booking-submit button {
+    width: 90%;
+  }
 }
+
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
   #logo {
-    height: 89px;
+    height: 49px;
   }
   #slider-1 img {
     left: 75%;
@@ -220,10 +277,41 @@ footer {
     top: 23px;
     width: 270px;
   }
+  .map-title-container {
+    width: 70%;
+  }
+  #map {
+    height: 750px;
+    width: 100%;
+    width: 70%;
+  }
+  .side-panel {
+    float: right;
+    width: 30%;
+    height: 750px;
+    top: -750px;
+  }
+  #station-details {
+    margin: 0 15px 30px 15px;
+    top: 15px;
+    padding-bottom: 15px;
+    height: 425px;
+  }
+  #station-details h2 {
+    padding-bottom: 20px;
+  }
+  #station-details .bikes-results {
+    padding-bottom: 32px;
+    padding-top: 16px;
+  }
+  .booking-submit button {
+    width: 92%;
+  }
 }
+
 @media screen and (min-width: 1281px) {
   #logo {
-    height: 89px;
+    height: 49px;
   }
   #slider-1 img {
     left: 75%;
@@ -237,5 +325,35 @@ footer {
     left: 9%;
     top: 40px;
     width: 470px;
+  }
+  .map-title-container {
+    width: 80%;
+  }
+  #map {
+    height: 800px;
+    width: 100%;
+    width: 80%;
+  }
+  .side-panel {
+    float: right;
+    width: 20%;
+    height: 800px;
+    top: -800px;
+  }
+  #station-details {
+    margin: 0 15px 30px 15px;
+    top: 15px;
+    padding-bottom: 15px;
+    height: 425px;
+  }
+  #station-details h2 {
+    padding-bottom: 20px;
+  }
+  #station-details .bikes-results {
+    padding-bottom: 32px;
+    padding-top: 16px;
+  }
+  .booking-submit button {
+    width: 92%;
   }
 }

@@ -57,26 +57,31 @@
   <section id="slider-1">
   </section>
   <div class="line">
-    <h1>Stations Vélib'</h1>
+    <div class="map-title-container">
+      <h1>Carte des Stations Vélib'</h1>
+    </div>
   </div>
   <section class="booking-panel">
     <div id="map"></div>
     <aside class="side-panel">
       <div id="station-details">
-        <h2 id="notice">-- Cliquez sur une station --</h2>
-        <p>ÉTAT : <span id="status"></span</p>
-        <p>NOM : <span id="name"></span></p>
-        <p>VÉLOS DISPONIBLES : <span id="bikesOk"></span></p>
-        <p>EMPLACEMENTS LIBRES : <span id="standsOk"></span></p>
-        <p>ADRESSE : <span id="address"></span></p>
-        <p>COORDONNÉES GPS : </p>
-        <div id="gpsLat"></div>
-        <div id="gpsLng"></div>
+        <h2 id="notice">Cliquez sur une station</h2>
+        <p>ÉTAT : <span id="status"></span></p>
 
+        <div class="bikes-results">
+          <div><span id="bikesOk"></span>
+            <div>VÉLOS DISPONIBLES</div>
+          </div>
+          <div><span id="standsOk"></span>
+            <div>EMPLACEMENTS LIBRES</div>
+          </div>
+        </div>
+        <p>NOM : <span id="name"></span></p>
+        <p>ADRESSE : <span id="address"></span></p>
 
       </div>
       <div class="booking-submit">
-        <button>Réserver</button>
+        <button>RÉSERVER MON VÉLO</button>
       </div>
     </aside>
   </section>

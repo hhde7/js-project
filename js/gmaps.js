@@ -1,5 +1,4 @@
 function initMap() {
-
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: {lat : 48.8578095, lng: 2.2931233},
@@ -110,7 +109,6 @@ function initMap() {
     ]
   });
   // A tester -> polygone délimitant les secteurs (voir site velib, carte)
-
   // var ctaLayer = new google.maps.KmlLayer({
   //   url: "kml/Ile-de-France.kml",
   //   map: map
@@ -158,13 +156,11 @@ function initMap() {
         standsOk : infoStations.records[i].fields.available_bike_stands,
         bikesOk : infoStations.records[i].fields.available_bikes,
         address : infoStations.records[i].fields.address,
-        gpsLat : infoStations.records[i].fields.position[0],
-        gpsLng : infoStations.records[i].fields.position[1]
-      });
+              });
 
       google.maps.event.addListener(marker, 'click', function () {
 
-        document.getElementById("notice").textContent = "--- Détails de la station ---";
+        document.getElementById("notice").textContent = "Détails de la station";
         if (this.status === "OPEN") {
           document.getElementById("status").textContent = "OUVERTE";
           document.getElementById("status").style.backgroundColor = "#4a15c3";
@@ -176,12 +172,13 @@ function initMap() {
         document.getElementById("standsOk").textContent = this.standsOk;
         document.getElementById("bikesOk").textContent = this.bikesOk;
         document.getElementById("address").textContent = this.address;
-        document.getElementById("gpsLat").textContent = this.gpsLat;
-        document.getElementById("gpsLng").textContent = this.gpsLng;
+        // document.getElementById("gpsLat").textContent = this.gpsLat;
+        // document.getElementById("gpsLng").textContent = this.gpsLng;
 
       });
       // Ajout du marker au tableau markers (ce dernier est utilisé par le clusterer)
       markers.push(marker);
+
     }
     // Définition des icones pour le clusterer, 4 niveaux (0-9), (10-99), (100,999), (1000,9999)
     // Nombre de stations: 1226 au 08/12/17
