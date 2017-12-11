@@ -154,6 +154,7 @@ footer {
 #station-details p {
   text-align: left;
   margin-left: 5%;
+  margin-right: 5%;
 }
 
 #station-details h2 {
@@ -191,13 +192,14 @@ footer {
   color: white;
   border: none;
   font-size: 20px;
-  font-weight: bold;
-  background-color: #4a15c3;
+  font-weight: 700;
+  background-color: rgba(250,250,250,0.2);
   border-radius: 5px;
   margin-bottom: 15px;
   width: 93%;
   padding: 18px;
   outline: none;
+  cursor: not-allowed;
 }
 
 /* //////////////////////// MEDIA QUERIES //////////////////////// */

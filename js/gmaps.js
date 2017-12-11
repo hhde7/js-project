@@ -108,34 +108,37 @@ function initMap() {
       }
     ]
   });
-  // A tester -> polygone délimitant les secteurs (voir site velib, carte)
+  // // A tester -> polygone délimitant les secteurs (voir site velib, carte)
   // var ctaLayer = new google.maps.KmlLayer({
-  //   url: "kml/Ile-de-France.kml",
+  //   url: "kml/Ile-de-France.kml", // trouver kml ou définir zone manuellement
   //   map: map
   // });
+  var markers = []; // Tableaux des markers pour le clusterer
 
   // TRAITEMENT DES DONNEES OPENDATA PARIS
-  var velibMap = document.getElementById("velib-map");
   ajaxGet("https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&rows=2000&facet=banking&facet=bonus&facet=status&facet=contract_name", function(reponse) {
     var infoStations = JSON.parse(reponse);
 
-    var markers = []; // Tableaux des markers pour le clusterer
     var stationIcon = ""; // Variable contenant l'url de l'image du marker, selon l'état OPEN / CLOSED de la station
     var labelColor = ""; // Variable contenant la couleur du label du marker, selon l'état OPEN / CLOSED de la station
+    var labelElt = document.getElementById("status");
+    var bookingButtonElt = document.getElementById("bookingButton");
 
     // Boucle traitant toutes les stations vélib'
     for (var i = 0; i < infoStations.records.length; i++) {
       // Vérification de l'état de la station puis attribution d'une icone et d'une couleur de label
       if(infoStations.records[i].fields.status === "OPEN") {
+        // Si station ouverte ...
         stationIcon = "images/credited/sources/marker-on.png";
         labelColor = "#4a15c3";
       } else {
+        // Si station fermée ...
         stationIcon = "images/credited/sources/marker-off.png";
         labelColor = "#c33a15";
       };
       // Définition du marker
       var marker = new google.maps.Marker({
-        // Ajout du marker de la station à partir de ses coordonnées GPS
+        // Ajout du marker de la station à partir de ses coordonnées WGS84
         position: {
           lat : infoStations.records[i].fields.position[0],
           lng : infoStations.records[i].fields.position[1]
@@ -150,36 +153,65 @@ function initMap() {
           text : infoStations.records[i].fields.name.substr(8), // Suppression du n° de la station (12345 - )
           color : labelColor,
           fontSize : "11px",
-          fontWeight : "bold"
+          fontWeight : "700"
         },
+        // Définition des autres infos utiles de la station
         status : infoStations.records[i].fields.status,
         standsOk : infoStations.records[i].fields.available_bike_stands,
         bikesOk : infoStations.records[i].fields.available_bikes,
-        address : infoStations.records[i].fields.address,
-              });
+        address : infoStations.records[i].fields.address.toUpperCase(),
+      });
 
+      // Ecoute des marqueurs et actions à effectuer
       google.maps.event.addListener(marker, 'click', function () {
 
+        // Affichage titre dans le panneau latéral, après clic sur une station
         document.getElementById("notice").textContent = "Détails de la station";
+
+        // Règles sur les couleurs et le contenu textuel du bouton, et du champ état
         if (this.status === "OPEN") {
-          document.getElementById("status").textContent = "OUVERTE";
-          document.getElementById("status").style.backgroundColor = "#4a15c3";
+          // Stations ouvertes
+          labelElt.textContent = "OUVERTE";
+          labelElt.style.backgroundColor = "#4a15c3";
+          if (this.bikesOk > 0) {
+            // Gestion des stations ouvertes avec vélo(s)
+            bookingButtonElt.style.backgroundColor = "#4a15c3";
+            bookingButtonElt.textContent = "RÉSERVER MON VÉLO";
+            bookingButtonElt.removeAttribute("disabled", "");
+            bookingButtonElt.style.cursor = "pointer";
+          } else {
+            // Gestion des stations ouvertes sans vélo
+            bookingButtonElt.style.backgroundColor = "#c33a15";
+            bookingButtonElt.textContent = "PAS DE VÉLO DISPONIBLE";
+            bookingButtonElt.setAttribute("disabled", "");
+            bookingButtonElt.style.cursor = "not-allowed";
+          }
         } else {
-          document.getElementById("status").textContent = "FERMÉE";
-          document.getElementById("status").style.backgroundColor = "#c33a15";
+          // Stations fermées
+          labelElt.textContent = "FERMÉE";
+          labelElt.style.backgroundColor = "#c33a15";
+          bookingButtonElt.style.backgroundColor = "#c33a15";
+          bookingButtonElt.textContent = "CHOISIR UNE AUTRE STATION";
+          bookingButtonElt.setAttribute("disabled", "");
+          bookingButtonElt.style.cursor = "not-allowed";
         };
+        // Affichage des autres données de la station
         document.getElementById("name").textContent = this.label.text;
         document.getElementById("standsOk").textContent = this.standsOk;
         document.getElementById("bikesOk").textContent = this.bikesOk;
         document.getElementById("address").textContent = this.address;
-        // document.getElementById("gpsLat").textContent = this.gpsLat;
-        // document.getElementById("gpsLng").textContent = this.gpsLng;
-
       });
+
       // Ajout du marker au tableau markers (ce dernier est utilisé par le clusterer)
       markers.push(marker);
-
     }
+
+    // Écoute du bouton de réservation
+    bookingButtonElt.addEventListener("click", function(e) {
+      console.log(e.target.textContent);
+      // A faire : Lancer canvas, reprendre les infos de la station pour confirmation
+    });
+
     // Définition des icones pour le clusterer, 4 niveaux (0-9), (10-99), (100,999), (1000,9999)
     // Nombre de stations: 1226 au 08/12/17
     mcOptions = {styles: [{
@@ -212,4 +244,5 @@ function initMap() {
   var mc = new MarkerClusterer(map, markers, mcOptions);
 
 });
+
 }

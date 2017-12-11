@@ -48,10 +48,15 @@ var Slider = {
   buttons : function (parentId, previousButtonId, nextButtonId) {
     var previousButton = document.createElement("button");
     var nextButton = document.createElement("button");
-    previousButton.textContent = " < ";
-    nextButton.textContent = " > ";
+    previousButton.setAttribute("type", "button");
+    nextButton.setAttribute("type", "button");
     previousButton.id = previousButtonId;
     nextButton.id = nextButtonId;
+    previousButton.textContent = " < ";
+    nextButton.textContent = " > ";
+    previousButton.title = "Précédent";
+    nextButton.title = "Suivant";
+
     // Mise en place des listeners
     previousButton.addEventListener("click", function () {
       Slider.previousSlide()
