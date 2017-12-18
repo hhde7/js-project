@@ -2,6 +2,7 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: {lat : 48.8578095, lng: 2.2931233},
+    streetViewControl: false,
     // Style des éléments de la carte
     styles:[
       {
@@ -108,12 +109,10 @@ function initMap() {
       }
     ]
   });
-  // // A tester -> polygone délimitant les secteurs (voir site velib, carte)
-  // var ctaLayer = new google.maps.KmlLayer({
-  //   url: "kml/Ile-de-France.kml", // trouver kml ou définir zone manuellement
-  //   map: map
-  // });
+
+
   var markers = []; // Tableaux des markers pour le clusterer
+
 
   // TRAITEMENT DES DONNEES OPENDATA PARIS
   ajaxGet("https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&rows=2000&facet=banking&facet=bonus&facet=status&facet=contract_name", function(reponse) {
@@ -151,6 +150,7 @@ function initMap() {
         // Défition du texte du label et de son style
         label : {
           text : infoStations.records[i].fields.name.substr(8), // Suppression du n° de la station (12345 - )
+          // NOTE: préferer indexOf()  slice() trim()
           color : labelColor,
           fontSize : "11px",
           fontWeight : "700"
@@ -164,6 +164,8 @@ function initMap() {
 
       // Ecoute des marqueurs et actions à effectuer
       google.maps.event.addListener(marker, 'click', function () {
+        var stationDetails = document.getElementById("station-details");
+        stationDetails.style.opacity = "1";
 
         // Affichage titre dans le panneau latéral, après clic sur une station
         document.getElementById("notice").textContent = "Détails de la station";
@@ -175,12 +177,14 @@ function initMap() {
           labelElt.style.backgroundColor = "#4a15c3";
           if (this.bikesOk > 0) {
             // Gestion des stations ouvertes avec vélo(s)
+            bookingButtonElt.style.display = "inline";
             bookingButtonElt.style.backgroundColor = "#4a15c3";
             bookingButtonElt.textContent = "RÉSERVER MON VÉLO";
             bookingButtonElt.removeAttribute("disabled", "");
             bookingButtonElt.style.cursor = "pointer";
           } else {
             // Gestion des stations ouvertes sans vélo
+            bookingButtonElt.style.display = "inline";
             bookingButtonElt.style.backgroundColor = "#c33a15";
             bookingButtonElt.textContent = "PAS DE VÉLO DISPONIBLE";
             bookingButtonElt.setAttribute("disabled", "");
@@ -190,6 +194,7 @@ function initMap() {
           // Stations fermées
           labelElt.textContent = "FERMÉE";
           labelElt.style.backgroundColor = "#c33a15";
+          bookingButtonElt.style.display = "inline";
           bookingButtonElt.style.backgroundColor = "#c33a15";
           bookingButtonElt.textContent = "CHOISIR UNE AUTRE STATION";
           bookingButtonElt.setAttribute("disabled", "");
@@ -200,6 +205,17 @@ function initMap() {
         document.getElementById("standsOk").textContent = this.standsOk;
         document.getElementById("bikesOk").textContent = this.bikesOk;
         document.getElementById("address").textContent = this.address;
+
+        var bookingValidation = document.getElementById("booking-validation");
+        var footer = document.querySelector("footer");
+        // var canvasElt = document.getElementById("canvas");
+        if (bookingValidation.childNodes.length > 0 ) {
+          bookingValidation.innerHTML = "";
+          footer.innerHTML = "";
+          var state = "off";
+          // clearInterval(timer)
+          loopTimer(state);
+        }
       });
 
       // Ajout du marker au tableau markers (ce dernier est utilisé par le clusterer)
@@ -208,8 +224,27 @@ function initMap() {
 
     // Écoute du bouton de réservation
     bookingButtonElt.addEventListener("click", function(e) {
-      console.log(e.target.textContent);
-      // A faire : Lancer canvas, reprendre les infos de la station pour confirmation
+      var redrawButton = document.getElementById("redrawButton");
+      var stationName = document.getElementById("name");
+      var stationAddress = document.getElementById("address");
+      var bikesOk = document.getElementById("bikesOk");
+      var booking = "";
+      if (redrawButton === null) {
+        booking = "ENREGISTREZ VOTRE SIGNATURE PUIS VALIDEZ";
+        bookingStep(booking);
+      } else {
+        booking = {
+          text : "VOTRE VÉLO EST RÉSERVÉ",
+          station : stationName.textContent,
+          address : stationAddress.textContent,
+          bikes : Number(bikesOk.textContent)
+        }
+        validationStep(booking);
+        var bookingValidation = document.getElementById("booking-validation");
+        var signature = document.getElementById("booking-validation").childNodes[1];
+        signature.style.boxShadow = "0 0 5px black";
+        signature.style.border = "1px rgb(121, 21, 195) dashed";
+      }
     });
 
     // Définition des icones pour le clusterer, 4 niveaux (0-9), (10-99), (100,999), (1000,9999)
@@ -244,5 +279,6 @@ function initMap() {
   var mc = new MarkerClusterer(map, markers, mcOptions);
 
 });
+
 
 }

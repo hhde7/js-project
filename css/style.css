@@ -1,11 +1,12 @@
 /* A FAIRE
-
+NOTE
 => Préfixage
 
 */
 
 html {
-  width: 100%
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -62,6 +63,7 @@ header {
 }
 
 #slider-1 button {
+  font-family: 'Dosis';
   background-color: #15a9c3;
   width: 50px;
   border: none;
@@ -120,8 +122,7 @@ header {
   text-align: center;
 }
 
-.booking-panel,
-footer {
+.booking-panel {
   position:relative;
   top: 200px;
 }
@@ -187,7 +188,8 @@ footer {
   font-size: 50px;
 }
 
-.booking-submit button {
+#booking-submit button {
+  position: relative;
   font-family: 'Dosis', sans-serif;
   color: white;
   border: none;
@@ -200,6 +202,60 @@ footer {
   padding: 18px;
   outline: none;
   cursor: not-allowed;
+}
+
+canvas {
+  display: inline;
+  position: relative;
+  top: -3px;
+  cursor: crosshair;
+  border-radius: 3px;
+  background-color: rgba(250,250,250,0.2);
+  border: 1px dashed white;
+}
+
+#signature-commands {
+  display: flex;
+  justify-content: center;
+}
+
+
+#clearButton,
+#recButton,
+#redrawButton {
+  width: 150px;
+  font-family: "Dosis", sans-serif;
+  border-radius: 5px;
+  outline: none;
+  background-color: white;
+}
+
+#clearButton {
+}
+
+#recButton {
+}
+
+#redrawButton {
+  display: block;
+  text-align: center;
+}
+
+#booking-validation img {
+  position: relative;
+  top: -3px;
+}
+
+footer {
+  font-family: "Inconsolata", sans-serif;
+  font-weight: 700;
+  background-color: rgb(121, 21, 195);
+  color: white;
+  box-shadow: 0 0 5px black;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 1347px;
 }
 
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
@@ -235,15 +291,15 @@ footer {
     width: 65%;
   }
   #map {
-    height: 650px;
+    height: 820px;
     width: 100%;
     width: 65%;
   }
   .side-panel {
     float: right;
     width: 35%;
-    height: 650px;
-    top: -650px;
+    height: 820px;
+    top: -820px;
   }
   #station-details {
     margin: 0 15px 30px 15px;
@@ -258,8 +314,17 @@ footer {
     padding-bottom: 32px;
     padding-top: 16px;
   }
-  .booking-submit button {
+  #bookingButton {
+    top: 19px !important;
+  }
+  #booking-submit button {
     width: 90%;
+  }
+  canvas { /* NOTE: gérer la taille du canvas via JS, évite les déformations */
+    width: 90%;
+  }
+  footer {
+  top: 1163px;
   }
 }
 
@@ -283,15 +348,15 @@ footer {
     width: 70%;
   }
   #map {
-    height: 750px;
+    height: 800px;
     width: 100%;
     width: 70%;
   }
   .side-panel {
     float: right;
     width: 30%;
-    height: 750px;
-    top: -750px;
+    height: 800px;
+    top: -800px;
   }
   #station-details {
     margin: 0 15px 30px 15px;
@@ -306,8 +371,12 @@ footer {
     padding-bottom: 32px;
     padding-top: 16px;
   }
-  .booking-submit button {
+
+  #booking-submit button {
     width: 92%;
+  }
+  footer {
+    top: 1153px;
   }
 }
 
@@ -332,15 +401,15 @@ footer {
     width: 80%;
   }
   #map {
-    height: 800px;
+    height: 850px;
     width: 100%;
     width: 80%;
   }
   .side-panel {
     float: right;
     width: 20%;
-    height: 800px;
-    top: -800px;
+    height: 850px;
+    top: -850px;
   }
   #station-details {
     margin: 0 15px 30px 15px;
@@ -355,7 +424,14 @@ footer {
     padding-bottom: 32px;
     padding-top: 16px;
   }
-  .booking-submit button {
+
+  #bookingButton {
+    top: 29px !important;
+  }
+  #booking-submit button {
     width: 92%;
+  }
+  footer {
+    top: 1203px;
   }
 }

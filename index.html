@@ -9,10 +9,11 @@
 <!-- ///////////////////////////////// STYLE LINK ///////////////////////////////// -->
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
 <!-- ///////////////////////// WEBFONTS ///////////////////////// -->
 
 <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+
 
 <!-- ///////////////////////// TWITTER CARD /////////////////////////
 
@@ -67,28 +68,27 @@
       <div id="station-details">
         <h2 id="notice">Cliquez sur une station</h2>
         <p>ÉTAT : <span id="status"></span></p>
-
         <div class="bikes-results">
-          <div><span id="bikesOk"></span>
+          <div><span id="bikesOk">^</span>
             <div>VÉLOS DISPONIBLES</div>
           </div>
-          <div><span id="standsOk"></span>
+          <div><span id="standsOk">^</span>
             <div>EMPLACEMENTS LIBRES</div>
           </div>
         </div>
         <p>NOM : <span id="name"></span></p>
         <p>ADRESSE : <span id="address"></span></p>
       </div>
-      <div class="booking-submit">
+      <div id="booking-validation"></div>
+        <div id="booking-submit">
         <button type="button" id="bookingButton" disabled >RÉSERVER MON VÉLO</button>
       </div>
     </aside>
   </section>
 
-  <footer>
-    <p>Etat de la réservation</p>
-
+  <footer id="time-zone">
   </footer>
+
 
   <script src="js/ajax.js"></script>
 
@@ -96,8 +96,10 @@
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt0VFP_O7Iq_2iONCtXWqcGfIe341WN04&callback=initMap"></script>
-  <script src="js/gmaps.js"></script>
-
+  <script src="js/map.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/timer.js"></script>
 </body>
 
 </html>

@@ -3,28 +3,28 @@ var slides = [
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/velib-bleu1.png",
-    alt: "Vélib sur les quais",
+    alt: "Vélib bleu électrique",
     title : "Vélib' 2018 - Version électrique",
     text : "Choisir une station sur la carte"
   },
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/velib-bleu2.png",
-    alt: "Vélib sur les quais",
+    alt: "Vélib bleu électrique",
     title : "Vélib' 2018 - Version électrique",
     text : "Vérifier qu'un vélo est disponible"
   },
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/velib-vert1.png",
-    alt: "Vélib sur les quais",
+    alt: "Vélib vert",
     title : "Vélib' 2018 - Version classique",
     text : "Cliquer sur réserver puis signer"
   },
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/borne3.png",
-    alt: "Vélib sur les quais",
+    alt: "Station Vélib",
     title : "Velib' 2018 - Nouvelle Borne",
     text : "Votre vélo est réservé pendant 20 minutes !"
   }
@@ -82,10 +82,14 @@ var Slider = {
       } else if (e.keyCode === 39 || e.keyCode === 102 ) {
         Slider.nextSlide();
         clearInterval(animSlider);
-      } else {
-
+      } else { // NOTE: à supprimer
+        // Pas d'action sur les autres touches du clavier
       };
     });
+  },
+  // Définition de la nouvelle slide
+  createNewSlide : function () {
+    Slider.slide(slides[i].parentDivId, slides[i].src, slides[i].alt, slides[i].title, slides[i].text)
   },
   // Construction d'une slide
   slide : function (parentId, src, alt, title, text) {
@@ -103,16 +107,6 @@ var Slider = {
   removeCurrentSlide : function () {
     var idElt = document.getElementById(slides[i].parentDivId);
     idElt.innerHTML = "";
-  },
-  // Définition de la nouvelle slide
-  createNewSlide : function () {
-    Slider.slide(
-      slides[i].parentDivId,
-      slides[i].src,
-      slides[i].alt,
-      slides[i].title,
-      slides[i].text
-    )
   },
   // Appel de la slide suivante
   nextSlide : function () {
@@ -138,21 +132,15 @@ var Slider = {
       Slider.createNewSlide(i);
     };
   }
-};
+}; // FIN DE L'OBJET Slider
 
 // Positionnement du slider
-new Slider.position(slides[i].parentDivId, "slider-1");
+Slider.position(slides[i].parentDivId, "slider-1");
+// Définition de la première slide
+Slider.slide(slides[i].parentDivId, slides[i].src, slides[i].alt, slides[i].title, slides[i].text);
 // Définition des boutons
 Slider.buttons("slider-1", "previous-button-1", "next-button-1");
 // Activation de l'écoute du clavier
 Slider.keysListener();
-// Définition de la première slide
-Slider.slide(
-  slides[i].parentDivId,
-  slides[i].src,
-  slides[i].alt,
-  slides[i].title,
-  slides[i].text
-);
 // Animation du slider au chargement de la page (désactivée après commande manuelle)
 var animSlider = setInterval(function() { Slider.nextSlide();  },  5000);
