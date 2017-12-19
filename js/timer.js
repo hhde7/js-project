@@ -2,9 +2,10 @@ var footer = document.querySelector("footer");
 var pElt = document.createElement("p");
 var minutes = 20;
 var secondes = 00;
+var setTimer; 
 
 function timerInit () {
-  var setTimer =  setInterval(function() {
+  setTimer =  setInterval(function() {
     secondes --;
     timer();  },  1000);
   }
@@ -31,7 +32,7 @@ function timerInit () {
     if (state === "on") {
       timer();
     } else {
-      clearInterval(timerInit);
+      clearInterval(setTimer);
     }
   }
 

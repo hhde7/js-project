@@ -112,7 +112,7 @@ function initMap() {
 
 
   var markers = []; // Tableaux des markers pour le clusterer
-
+// NOTE: objet litéral
 
   // TRAITEMENT DES DONNEES OPENDATA PARIS
   ajaxGet("https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&rows=2000&facet=banking&facet=bonus&facet=status&facet=contract_name", function(reponse) {

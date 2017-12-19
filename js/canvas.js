@@ -82,6 +82,9 @@ function bookingStep (booking) {
     };
     // The event handler works like a drawing pencil which
     // tracks the mouse movements. We start drawing a path made up of lines
+
+// NOTE: retravailer l'explication
+
     if (!started) {
       context.beginPath();
       context.moveTo(x, y);
