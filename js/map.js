@@ -214,7 +214,7 @@ function initMap() {
           footer.innerHTML = "";
           var state = "off";
           // clearInterval(timer)
-          loopTimer(state);
+          timer.start(state);
         }
       });
 

@@ -71,8 +71,8 @@ function validationStep(booking) {
   bikesOk.textContent = booking.bikes;
 
   if (booking.text === "VOTRE VÉLO EST RÉSERVÉ") {
-    timerInit();
+    timer.init();
     var state = "on";
-    loopTimer(state);
+    timer.start(state);
   }
 }

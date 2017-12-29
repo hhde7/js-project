@@ -33,10 +33,7 @@ var slides = [
 var i = 0; // Valeur du rang de la slide, dans le tableau d'objets "slides"
 
 // Objet Slider
-// et méthodes : position, buttons, keysListener,
-//               slide, removeCurrentSlide, createNewSlide,
-//               previousSlide et nextSlide
-var Slider = {
+var slider = {
   // Définit l'ID du slider. Ajoute l'enfant DIV (contenant la slide active) à l'ID parent
   position : function (divId, parentId) {
     var divElt = document.createElement("div");
@@ -59,11 +56,11 @@ var Slider = {
 
     // Mise en place des listeners
     previousButton.addEventListener("click", function () {
-      Slider.previousSlide()
+      slider.previousSlide()
       clearInterval(animSlider);
     });
     nextButton.addEventListener("click", function () {
-      Slider.nextSlide();
+      slider.nextSlide();
       clearInterval(animSlider);
     });
     // Ajout des boutons
@@ -76,11 +73,11 @@ var Slider = {
     document.addEventListener("keydown", function (e) {
       // Règles pour les touches flèche gauche et 4 du pavé numérique
       if (e.keyCode === 37 || e.keyCode === 100 ) {
-        Slider.previousSlide();
+        slider.previousSlide();
         clearInterval(animSlider);
         // Règles pour les touches flèche droite et 6 du pavé numérique
       } else if (e.keyCode === 39 || e.keyCode === 102 ) {
-        Slider.nextSlide();
+        slider.nextSlide();
         clearInterval(animSlider);
       } else { // NOTE: à supprimer
         // Pas d'action sur les autres touches du clavier
@@ -89,7 +86,7 @@ var Slider = {
   },
   // Définition de la nouvelle slide
   createNewSlide : function () {
-    Slider.slide(slides[i].parentDivId, slides[i].src, slides[i].alt, slides[i].title, slides[i].text)
+    slider.slide(slides[i].parentDivId, slides[i].src, slides[i].alt, slides[i].title, slides[i].text)
   },
   // Construction d'une slide
   slide : function (parentId, src, alt, title, text) {
@@ -112,35 +109,35 @@ var Slider = {
   nextSlide : function () {
     i ++;
     if (i < slides.length) {
-      Slider.removeCurrentSlide();
-      Slider.createNewSlide(i);
+      slider.removeCurrentSlide();
+      slider.createNewSlide(i);
     } else {
       i = 0; // Retour à la slide n°1
-      Slider.removeCurrentSlide();
-      Slider.createNewSlide(i);
+      slider.removeCurrentSlide();
+      slider.createNewSlide(i);
     };
   },
   // Appel de la slide précédente
   previousSlide : function () {
     i --;
     if (i >= 0) {
-      Slider.removeCurrentSlide();
-      Slider.createNewSlide(i);
+      slider.removeCurrentSlide();
+      slider.createNewSlide(i);
     } else {
       i = slides.length - 1; // Saut vers la dernière slide
-      Slider.removeCurrentSlide();
-      Slider.createNewSlide(i);
+      slider.removeCurrentSlide();
+      slider.createNewSlide(i);
     };
   }
-}; // FIN DE L'OBJET Slider
+}; // FIN DE L'OBJET slider
 
 // Positionnement du slider
-Slider.position(slides[i].parentDivId, "slider-1");
+slider.position(slides[i].parentDivId, "slider-1");
 // Définition de la première slide
-Slider.slide(slides[i].parentDivId, slides[i].src, slides[i].alt, slides[i].title, slides[i].text);
+slider.slide(slides[i].parentDivId, slides[i].src, slides[i].alt, slides[i].title, slides[i].text);
 // Définition des boutons
-Slider.buttons("slider-1", "previous-button-1", "next-button-1");
+slider.buttons("slider-1", "previous-button-1", "next-button-1");
 // Activation de l'écoute du clavier
-Slider.keysListener();
+slider.keysListener();
 // Animation du slider au chargement de la page (désactivée après commande manuelle)
-var animSlider = setInterval(function() { Slider.nextSlide();  },  5000);
+var animSlider = setInterval(function() { slider.nextSlide();  },  5000);
