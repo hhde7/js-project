@@ -1,78 +1,34 @@
-function saveData () {
-  var signature = document.createElement("img");
-  signature.id = "signature";
-  signature.src = canvas.toDataURL();
-  signature.style.border = "1px white dashed";
-  signature.style.backgroundColor = "rgba(250,250,250,0.2)";
-
-  signature.style.borderRadius = "3px";
-  var pElt = document.createElement("p");
-  pElt.textContent = "RECOMMENCER OU VALIDER";
-  pElt.style.color = "white";
-  pElt.style.backgroundColor = "#4a15c3";
-  pElt.style.fontWeight = "700";
-  pElt.style.padding = "5px 0";
-
-  var redrawButtonElt = document.createElement("button");
-  redrawButtonElt.textContent = "Recommencer";
-  redrawButtonElt.id = "redrawButton";
-
-
-  var bookingValidation = document.getElementById("booking-validation");
-  bookingValidation.innerHTML = "";
-  // removeChild(bookingNodes.childNodes[0]);
-  // bookingNodes.removeChild(bookingNodes.childNodes[1]);
-  bookingValidation.appendChild(pElt);
-  bookingValidation.appendChild(signature);
-
-  var divElt = document.createElement("div");
-  divElt.id = "signature-commands";
-
-  bookingValidation.appendChild(divElt);
-  divElt.appendChild(redrawButtonElt);
-
-  var bookingButton = document.getElementById("bookingButton");
-  bookingButton.removeAttribute("disabled");
-  bookingButton.style.cursor = "pointer";
-
-  redrawButtonElt.addEventListener("click", function () {
-    bookingValidation.innerHTML = "";
-    var message = "ENREGISTREZ VOTRE SIGNATURE PUIS VALIDEZ";
-    bookingStep(message);
-  });
-}
-
-function validationStep(booking) {
-  var bookingValidation = document.getElementById("booking-validation").childNodes[0];
-  var pStation = document.createElement("p");
-  var pAddress = document.createElement("p");
-  bookingValidation.style.backgroundColor = "rgb(121, 21, 195)";
-  bookingValidation.style.boxShadow = "2px 0 5px black";
-  pAddress.style.marginBottom = "0px";
-  bookingValidation.textContent = booking.text;
-  pStation.textContent = "STATION : " + booking.station;
-  pAddress.textContent = booking.address;
-  bookingValidation.appendChild(pStation);
-  bookingValidation.appendChild(pAddress);
-
-  var signature = document.getElementById("signature");
-  signature.style.top = "20px";
-
-  var redrawButton = document.getElementById("redrawButton");
-  var bookingButton = document.getElementById("bookingButton");
-  redrawButton.parentNode.removeChild(redrawButton);
-  bookingButton.style.display = "none";
-
-  var stationDetails = document.getElementById("station-details");
-  stationDetails.style.opacity = "0.4";
-
-  booking.bikes --;
-  var bikeOk = document.getElementById("bikesOk");
-  bikesOk.textContent = booking.bikes;
-
-  if (booking.text === "VOTRE VÉLO EST RÉSERVÉ") {
-    timer.init();
-    var state = "on";
+// Contrôle des données du sessionStorage au chargemet de la page
+window.onload = function storageCheck() {
+  // Vérification de la présence d'une réservation en mémoire
+  if (sessionStorage.getItem('keepStation') != null) {
+    // Si oui, récupération des données temporelles du timer avant reprise
+    minutes = Number(sessionStorage.getItem('minutes', minutes));
+    secondes = Number(sessionStorage.getItem('secondes', secondes));
+    state = "on";
     timer.start(state);
+    // Rechargmeent du footer en fonction de sa couleur avant refresh
+    if (sessionStorage.getItem('footerColor') === "rgb(195, 58, 21)") {
+      footer.innerHTML = "";
+      message = "TROP TARD...CLIQUEZ SUR UNE STATION POUR CHOISIR UN NOUVEAU VÉLO";
+      pElt.textContent = message;
+      footer.appendChild(pElt);
+    } else {
+      pElt.textContent = sessionStorage.getItem('message');
+      footer.style.backgroundColor = sessionStorage.getItem('footerColor');
+      footer.appendChild(pElt);
+    }
   }
+  // Scroll auto vers footer si réservation en cours
+  var divElt = document.createElement("div");
+  divElt.id = "footerMessage";
+  footer.appendChild(divElt);
 }
+// Enregistrement des données dans le sessionStorage avant refresh
+window.onunload = function () {
+  sessionStorage.setItem('minutes', minutes);
+  sessionStorage.setItem('secondes', secondes);
+  sessionStorage.setItem('footerColor', footer.style.backgroundColor);
+  sessionStorage.setItem('message', message);
+  sessionStorage.setItem('keepStation', keepStation);
+};

@@ -29,9 +29,7 @@ var slides = [
     text : "Votre vélo est réservé pendant 20 minutes !"
   }
 ];
-
 var i = 0; // Valeur du rang de la slide, dans le tableau d'objets "slides"
-
 // Objet Slider
 var slider = {
   // Définit l'ID du slider. Ajoute l'enfant DIV (contenant la slide active) à l'ID parent
