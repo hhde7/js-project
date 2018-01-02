@@ -7,22 +7,18 @@ window.onload = function storageCheck() {
     secondes = Number(sessionStorage.getItem('secondes', secondes));
     state = "on";
     timer.start(state);
-    // Rechargmeent du footer en fonction de sa couleur avant refresh
+    // Rechargement du footer en fonction de sa couleur avant refresh
     if (sessionStorage.getItem('footerColor') === "rgb(195, 58, 21)") {
       footer.innerHTML = "";
       message = "TROP TARD...CLIQUEZ SUR UNE STATION POUR CHOISIR UN NOUVEAU VÉLO";
       pElt.textContent = message;
       footer.appendChild(pElt);
     } else {
-      pElt.textContent = sessionStorage.getItem('message');
+      footer.innerHTML = "";
       footer.style.backgroundColor = sessionStorage.getItem('footerColor');
       footer.appendChild(pElt);
     }
   }
-  // Scroll auto vers footer si réservation en cours
-  var divElt = document.createElement("div");
-  divElt.id = "footerMessage";
-  footer.appendChild(divElt);
 }
 // Enregistrement des données dans le sessionStorage avant refresh
 window.onunload = function () {

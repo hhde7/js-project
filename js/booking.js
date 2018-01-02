@@ -1,6 +1,9 @@
 var canvas  = document.createElement("canvas");
 var context = canvas.getContext('2d');
-var started = false;
+var started = false; // Renvoie l'étât du timer
+var reference = document.getElementById("station-details");
+var canvasWidth = window.getComputedStyle(reference, null).getPropertyValue("width");
+var signatureCheck = false; // Renvoie la présence d'une signature dans canvas
 
 var bookMe = {
   // Actions après click sur "Réserver mon vélo" :
@@ -25,6 +28,7 @@ var bookMe = {
     bookingButton.setAttribute("OnClick", "window.location.href='#time-zone'");
     // Canvas
     canvas.id = "canvas";
+    canvas.setAttribute("width", canvasWidth);
     context.strokeStyle = "darkred";
     canvas.textContent = "Désolé, votre navigateur ne supporte pas Canvas. Mettez-vous à jour"
     // Ajout des éléments
@@ -51,7 +55,12 @@ var bookMe = {
     var clearButton = document.getElementById("clearButton");
     var recButton = document.getElementById("recButton");
     clearButton.addEventListener("click", bookMe.clearCanvas);
-    recButton.addEventListener("click", bookMe.keep);
+    recButton.addEventListener("click", function() {
+      // Enregistrement de la signature si présence dessin dans canvas
+      if (signatureCheck === true) {
+        bookMe.keep();
+      }
+    })
   },
   // Enregistrement de la signature
   keep: function () {
@@ -87,6 +96,7 @@ var bookMe = {
     bookingButton.style.cursor = "pointer";
     // Écoute du bouton Rrecommencer
     redrawButton.addEventListener("click", function () {
+      signatureCheck = false;
       bookMe.clearCanvas();
       bookingValidation.innerHTML = "";
       var message = "ENREGISTREZ VOTRE SIGNATURE PUIS VALIDEZ";
@@ -141,13 +151,20 @@ var bookMe = {
   clearCanvas: function () {
     var x = 0;
     var y = 0;
-    var width  = 300;
+    var width  = canvasWidth.substring(0, canvasWidth.length-2); // Suppression de "px"
     var height = 250;
     context.clearRect(x, y, width, height);
+    signatureCheck = false;
   },
   // Dessine après mousedown & trace ligne sur mousemove
   trace: function (ev) {
     canvas.addEventListener('mousemove', bookMe.mouseMove, false);
+
+    // canvas.addEventListener('touchmove', bookMe.mouseMove, false);
+    // canvas.addEventListener("touchstart", bookMe.mouseMove, false);
+    // canvas.addEventListener("touchend", bookMe.stop, false);
+    // canvas.addEventListener("touchcancel", bookMe.stop, false);
+    // canvas.addEventListener("touchleave", bookMe.stop, false);
   },
   // Supprime l'écoute de la souris après mouseup
   stop: function (ev) {
@@ -170,11 +187,10 @@ var bookMe = {
       context.beginPath();
       context.moveTo(x, y);
       started = true;
+      signatureCheck = true;
     } else {
       context.lineTo(x, y);
       context.stroke();
     }
   }
 }
-
-// NOTE: bouléen impossible d'neregistrer signature si pas de signature

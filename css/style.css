@@ -13,6 +13,7 @@ body {
   margin: 0;
   padding: 0;
   color: rgb(37,37,37);
+  background-color: #84a659;
 }
 h1 {
   font-family: 'Dosis', sans-serif;
@@ -325,9 +326,9 @@ footer {
   #booking-submit button {
     width: 90%;
   }
-  canvas { /* NOTE: gérer la taille du canvas via JS, évite les déformations */
+  /* canvas {
     width: 90%;
-  }
+  } */
   footer {
   top: 1163px;
   }
