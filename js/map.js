@@ -1,6 +1,8 @@
 var markers = []; // Tableaux des markers pour le clusterer
 var map;
 
+// NOTE: var url api
+
 var mapZone = {
   // Initialisation du fond de carte Google Map
   initMap: function () {
@@ -219,7 +221,7 @@ var mapZone = {
           }
           // Maintient de la décrémentation du nbre de vélo dans la station choisie
           if (sessionStorage.getItem('bookedStation') === "STATION : " + document.getElementById("name").textContent &&
-              footer.textContent != "TROP TARD...CLIQUEZ SUR UNE STATION POUR CHOISIR UN NOUVEAU VÉLO" ) {
+          footer.textContent != "TROP TARD...CLIQUEZ SUR UNE STATION POUR CHOISIR UN NOUVEAU VÉLO" ) {
 
             bikesNumber.textContent = sessionStorage.getItem('bikesOk');
             bookingButtonElt.textContent = "VÉLO DÉJÀ RÉSERVÉ";
@@ -233,71 +235,67 @@ var mapZone = {
             document.getElementById("bikesOk").textContent = this.bikesOk;
           }
 
-          });
-
-          // Ajout du marker au tableau markers (ce dernier est utilisé par le clusterer)
-          markers.push(marker);
-        }
-
-        function goToFooter (){window.location.href="#footerMessage";}
-        goToFooter();
-
-        // Écoute du bouton de réservation
-        bookingButtonElt.addEventListener("click", function(e) {
-          var redrawButton = document.getElementById("redrawButton");
-          var stationName = document.getElementById("name");
-          var stationAddress = document.getElementById("address");
-          var bikesOk = document.getElementById("bikesOk");
-          var booking = "";
-          if (redrawButton === null) {
-            booking = "ENREGISTREZ VOTRE SIGNATURE PUIS VALIDEZ";
-            bookMe.bookingStep(booking);
-          } else {
-            sessionStorage.clear();
-            booking = {
-              text : "VOTRE VÉLO EST RÉSERVÉ",
-              station : stationName.textContent,
-              address : stationAddress.textContent,
-              bikes : Number(bikesOk.textContent)
-            }
-            bookMe.booked(booking);
-            var bookingValidation = document.getElementById("booking-validation");
-            var signature = document.getElementById("booking-validation").childNodes[1];
-            signature.style.boxShadow = "0 0 5px black";
-            signature.style.border = "1px #4a15c3 dashed";
-            sessionStorage.setItem("stationAddress", booking.address);
-          }
         });
 
-        // Définition des icones pour le clusterer, 4 niveaux (0-9), (10-99), (100,999), (1000,9999)
-        // Nombre de stations: 1226 au 08/12/17
-        mcOptions = {styles: [{
-          height: 50,
-          url: "images/credited/sources/marker-9.png",
-          textColor: "white",
-          width: 50
-        },
-        {
-          height: 53,
-          url: "images/credited/sources/marker-99.png",
-          textColor: "white",
-          width: 52
-        },
-        {
-          height: 70,
-          url: "images/credited/sources/marker-999.png",
-          textColor: "White",
-          width: 70
-        },
-        {
-          height: 81,
-          url: "images/credited/sources/marker-9999.png",
-          textColor : "White",
-          width: 78
+        // Ajout du marker au tableau markers (ce dernier est utilisé par le clusterer)
+        markers.push(marker);
+      }
+      // Écoute du bouton de réservation
+      bookingButtonElt.addEventListener("click", function(e) {
+        var redrawButton = document.getElementById("redrawButton");
+        var stationName = document.getElementById("name");
+        var stationAddress = document.getElementById("address");
+        var bikesOk = document.getElementById("bikesOk");
+        var booking = "";
+        if (redrawButton === null) {
+          booking = "ENREGISTREZ VOTRE SIGNATURE PUIS VALIDEZ";
+          bookMe.bookingStep(booking);
+        } else {
+          sessionStorage.clear();
+          booking = {
+            text : "VOTRE VÉLO EST RÉSERVÉ",
+            station : stationName.textContent,
+            address : stationAddress.textContent,
+            bikes : Number(bikesOk.textContent)
+          }
+          bookMe.booked(booking);
+          var bookingValidation = document.getElementById("booking-validation");
+          var signature = document.getElementById("booking-validation").childNodes[1];
+          signature.style.boxShadow = "0 0 5px black";
+          signature.style.border = "1px #4a15c3 dashed";
+          sessionStorage.setItem("stationAddress", booking.address);
         }
-      ]}
-      // Initialisation du clusterer
-      var mc = new MarkerClusterer(map, markers, mcOptions);
-    });
-  }
+      });
+
+      // Définition des icones pour le clusterer, 4 niveaux (0-9), (10-99), (100,999), (1000,9999)
+      // Nombre de stations: 1226 au 08/12/17
+      mcOptions = {styles: [{
+        height: 50,
+        url: "images/credited/sources/marker-9.png",
+        textColor: "white",
+        width: 50
+      },
+      {
+        height: 53,
+        url: "images/credited/sources/marker-99.png",
+        textColor: "white",
+        width: 52
+      },
+      {
+        height: 70,
+        url: "images/credited/sources/marker-999.png",
+        textColor: "White",
+        width: 70
+      },
+      {
+        height: 81,
+        url: "images/credited/sources/marker-9999.png",
+        textColor : "White",
+        width: 78
+      }
+    ]}
+    // Initialisation du clusterer
+    var mc = new MarkerClusterer(map, markers, mcOptions);
+  });
+}
 }

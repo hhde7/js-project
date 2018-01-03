@@ -4,6 +4,7 @@ var started = false; // Renvoie l'étât du timer
 var reference = document.getElementById("station-details");
 var canvasWidth = window.getComputedStyle(reference, null).getPropertyValue("width");
 var signatureCheck = false; // Renvoie la présence d'une signature dans canvas
+var recButtonElt = document.createElement("button");
 
 var bookMe = {
   // Actions après click sur "Réserver mon vélo" :
@@ -25,7 +26,6 @@ var bookMe = {
     bookingButton.textContent = "VALIDER MA RÉSERVATION";
     bookingButton.setAttribute("disabled", true);
     bookingButton.style.cursor = "not-allowed";
-    bookingButton.setAttribute("OnClick", "window.location.href='#time-zone'");
     // Canvas
     canvas.id = "canvas";
     canvas.setAttribute("width", canvasWidth);
@@ -41,7 +41,7 @@ var bookMe = {
     var clearButtonElt = document.createElement("button");
     clearButtonElt.id = "clearButton";
     clearButtonElt.textContent = "Effacer";
-    var recButtonElt = document.createElement("button");
+
     recButtonElt.id = "recButton";
     recButtonElt.textContent = "Enregistrer";
     // Conteneur des boutons
@@ -59,6 +59,8 @@ var bookMe = {
       // Enregistrement de la signature si présence dessin dans canvas
       if (signatureCheck === true) {
         bookMe.keep();
+      } else {
+        recButtonElt.textContent = "Signez d'abord SVP";
       }
     })
   },
@@ -137,8 +139,6 @@ var bookMe = {
     bikesOk.textContent = booking.bikes;
     // Lancement ou reset du timer
     if (booking.text === "VOTRE VÉLO EST RÉSERVÉ" && state === "off") {
-      // minutes = 1;
-      // secondes = 00;
       state = "on";
       timer.init();
       timer.start(state);
@@ -188,6 +188,7 @@ var bookMe = {
       context.moveTo(x, y);
       started = true;
       signatureCheck = true;
+      recButtonElt.textContent = "Enregistrer";
     } else {
       context.lineTo(x, y);
       context.stroke();

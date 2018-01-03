@@ -1,12 +1,6 @@
-/* A FAIRE
-NOTE
-=> Préfixage
-
-*/
-
 html {
   width: 100%;
-  height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -42,14 +36,11 @@ header {
 /* //////////////////////// SLIDER //////////////////////// */
 /* //////////////////////// SLIDER //////////////////////// */
 
-#slider-1 {
-  overflow: hidden;
-}
-
 #slider-1 img {
   position: relative;
   z-index: 1;
   left: 52%;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   padding: 0px 15px 30px 15px;
   height: 70%;
@@ -72,7 +63,9 @@ header {
   font-size: 23px;
   height: 200px;
   outline: none;
+  -webkit-transition-property: color, background-color;
   transition-property: color, background-color;
+  -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
 
@@ -109,6 +102,7 @@ header {
   margin-left: 60px;
   margin-right: 60px;
   top: -15px;
+  -webkit-box-shadow: 0px 0px 3px 0px white;
   box-shadow: 0px 0px 3px 0px white;
 }
 
@@ -176,7 +170,10 @@ header {
 }
 
 .bikes-results {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
 }
 
@@ -222,7 +219,11 @@ canvas {
 }
 
 #signature-commands {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -257,6 +258,7 @@ footer {
   font-family: "Inconsolata", sans-serif;
   font-weight: 700;
   color: white;
+  -webkit-box-shadow: 0 0 5px black;
   box-shadow: 0 0 5px black;
   position: absolute;
   width: 100%;
@@ -304,7 +306,7 @@ footer {
   .side-panel {
     float: right;
     width: 35%;
-    height: 820px;
+    height: 0;
     top: -820px;
   }
   #station-details {
@@ -323,14 +325,17 @@ footer {
   #bookingButton {
     top: 19px !important;
   }
+  #clearButton,
+  #recButton,
+  #redrawButton {
+    width: 120px;
+  }
   #booking-submit button {
     width: 90%;
+    font-size: 18px;
   }
-  /* canvas {
-    width: 90%;
-  } */
   footer {
-  top: 1163px;
+    top: 1163px;
   }
 }
 
@@ -361,7 +366,7 @@ footer {
   .side-panel {
     float: right;
     width: 30%;
-    height: 800px;
+    height: 0;
     top: -800px;
   }
   #station-details {
@@ -414,7 +419,7 @@ footer {
   .side-panel {
     float: right;
     width: 20%;
-    height: 850px;
+    height: 0;
     top: -850px;
   }
   #station-details {
