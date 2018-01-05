@@ -2,30 +2,30 @@
 var slides = [
   {
     parentDivId : "container-1",
-    src: "images/credited/sources/optimise/velib-bleu1.png",
-    alt: "VeloV bleu électrique",
-    title : "VeloV 2018 - Version électrique",
+    src: "images/credited/sources/optimise/velov-bleu1.png",
+    alt: "VéloV bleu électrique",
+    title : "VéloV 2018 - Version électrique",
     text : "Choisir une station sur la carte"
   },
   {
     parentDivId : "container-1",
-    src: "images/credited/sources/optimise/velib-bleu2.png",
-    alt: "VeloV bleu électrique",
-    title : "VeloV 2018 - Version électrique",
+    src: "images/credited/sources/optimise/velov-bleu2.png",
+    alt: "VéloV bleu électrique",
+    title : "VéloV 2018 - Version électrique",
     text : "Vérifier qu'un vélo est disponible"
   },
   {
     parentDivId : "container-1",
-    src: "images/credited/sources/optimise/velib-vert1.png",
-    alt: "Velov vert",
-    title : "Velov 2018 - Version classique",
+    src: "images/credited/sources/optimise/velov-vert1.png",
+    alt: "VéloV vert",
+    title : "VéloV 2018 - Version classique",
     text : "Cliquer sur réserver puis signer"
   },
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/borne3.png",
-    alt: "Station VeloV",
-    title : "VeloV 2018 - Nouvelle Borne",
+    alt: "Station VéloV",
+    title : "VéloV 2018 - Nouvelle Borne",
     text : "Votre vélo est réservé pendant 20 minutes !"
   }
 ];

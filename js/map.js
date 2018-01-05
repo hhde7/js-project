@@ -3,7 +3,6 @@ var map;
 var name;
 
 var apiUrl = "https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=4d6a53d1465ea92469e3eae20546ab38c2c3281a";
-// NOTE: évolution future : déclarer une variable "url api" en cas de changement de prestataire/json
 
 var mapZone = {
   // Initialisation du fond de carte Google Map
@@ -234,12 +233,9 @@ var mapZone = {
           stationDetails.style.opacity = "0.4";
         } else if (footer.textContent === "TROP TARD...CLIQUEZ SUR UNE STATION POUR CHOISIR UN NOUVEAU VÉLO" ) {
           // Incrémentaiton fictive du nombre de vélos
-
           document.getElementById("bikesOk").textContent = this.bikesOk;
         }
-
       });
-
       // Ajout du marker au tableau markers (ce dernier est utilisé par le clusterer)
       markers.push(marker);
     }
@@ -274,9 +270,8 @@ var mapZone = {
         window.scrollTo(0,document.body.scrollHeight);
       }
     });
-
     // Définition des icones pour le clusterer, 4 niveaux (0-9), (10-99), (100,999), (1000,9999)
-    // Nombre de stations: 1226 au 08/12/17
+    // Nombre de stations: 339 au 05/01/18
     mcOptions = {styles: [{
       height: 50,
       url: "images/credited/sources/marker-9.png",
@@ -307,7 +302,7 @@ var mapZone = {
   if (sessionStorage.getItem('keepStation') != null) {
     // Scroll vers le bas de la page pour mise en évidence du footer
     window.scrollTo(0,document.body.scrollHeight);
-    // NOTE: màj future smooth scroll
+    // NOTE: màj future : smooth scroll
   }
 });
 },
@@ -315,15 +310,12 @@ var mapZone = {
 nameFormat: function (station) {
   if (station.name.indexOf("-") === 5 || station.name.indexOf(" ") === 6 ) {
     name = station.name.substr(7);
-    console.log(name);
     return name;
   } else if (station.name.indexOf("-") === 6 || station.name.indexOf(" ") === 7 ) {
     name = station.name.substr(8);
-    console.log(name);
     return name;
   } else {
     name = station.name.substr(6);
-    console.log(name);
     return name;
   }
 }

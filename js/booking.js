@@ -37,27 +37,22 @@ var bookMe = {
     bookingValidation.appendChild(canvas);
 
     // Détection écrans tactiles
-    var deviceType = function(){
-    	try{
+    var deviceType = function() {
+    	try {
     		document.createEvent("TouchEvent");
     		return true;
-    	} catch(e){
+    	} catch(e) {
     		return false;
     	}
     }
-
     if (deviceType() === true) {
-      console.log("mobile");
       touchEvents.startup();
     } else {
-      console.log("desktop");
+
       // Méthodes à lancer selon click down/up
       canvas.onmousedown = bookMe.trace; // Dessiner
       canvas.onmouseup = bookMe.stop; // Ne pas dessiner
     }
-
-    // canvas.ontouchstart = bookMe.touchTrace;
-
     // Boutons de controle du canvas
     var clearButtonElt = document.createElement("button");
     clearButtonElt.id = "clearButton";
@@ -179,12 +174,6 @@ var bookMe = {
   // Dessine après mousedown, trace ligne sur mousemove
   trace: function (ev) {
     canvas.addEventListener('mousemove', bookMe.mouseMove, false);
-
-    // canvas.addEventListener('touchmove', bookMe.mouseMove, false);
-    // canvas.addEventListener("touchstart", bookMe.mouseMove, false);
-    // canvas.addEventListener("touchend", bookMe.stop, false);
-    // canvas.addEventListener("touchcancel", bookMe.stop, false);
-    // canvas.addEventListener("touchleave", bookMe.stop, false);
   },
   // Supprime l'écoute de la souris après mouseup
   stop: function (ev) {
