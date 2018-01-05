@@ -47,17 +47,12 @@ var bookMe = {
     }
 
     if (deviceType() === true) {
-      console.log("mobile");
       touchEvents.startup();
     } else {
-      console.log("desktop");
       // Méthodes à lancer selon click down/up
       canvas.onmousedown = bookMe.trace; // Dessiner
       canvas.onmouseup = bookMe.stop; // Ne pas dessiner
     }
-
-    // canvas.ontouchstart = bookMe.touchTrace;
-
     // Boutons de controle du canvas
     var clearButtonElt = document.createElement("button");
     clearButtonElt.id = "clearButton";
