@@ -1,6 +1,6 @@
 var footer = document.querySelector("footer");
 var pElt = document.createElement("p");
-
+var message;
 var minutes = Number;
 var secondes = Number;
 
@@ -47,7 +47,7 @@ var timer = {
     if (secondes < 10) {
       secondes = "0" + secondes;
     }
-    var message = "IL VOUS RESTE " + minutes +  " MINUTES ET " + secondes + " SECONDES POUR RÉCUPÉRER VOTRE VÉLO";
+    message = "IL VOUS RESTE " + minutes +  " MINUTES ET " + secondes + " SECONDES POUR RÉCUPÉRER VOTRE VÉLO";
     pElt.textContent = message;
 
     // Affichage permanent de la station choisie dans le footer
@@ -63,10 +63,9 @@ var timer = {
       sessionStorage.setItem('bookedAddress', bookedAddress);
       sessionStorage.setItem('bikesOk', Number(bikesNumber.textContent));
 
-      // footer.innerHTML = "";
+
       footer.appendChild(pElt);
 
-      // sessionStorage.setItem('footer', footer.innerHTML);
     } else {
       var keepStation = sessionStorage.getItem('keepStation');
       pElt.innerHTML = "";
@@ -100,12 +99,5 @@ var timer = {
         bookingValidation.innerHTML = "";
       }
     }
-    // var footerTop = getComputedStyle(footer, null).getPropertyValue("top");
-    // var footerHeight = getComputedStyle(footer, null).getPropertyValue("height");
-    // var top = Number(footerTop.substring(0, footerTop.length-2));
-    // var height = Number(footerHeight.substring(0, footerHeight.length-2));
-    // height = height + top + "px";
-    // var htmlElt = document.querySelector("html");
-    // htmlElt.style.height = height;
   }
 }

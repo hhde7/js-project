@@ -19,6 +19,7 @@ window.onload = function storageCheck() {
       footer.appendChild(pElt);
     }
   }
+
 }
 // Enregistrement des données dans le sessionStorage avant refresh
 window.onunload = function () {

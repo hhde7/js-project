@@ -1,7 +1,7 @@
 var markers = []; // Tableaux des markers pour le clusterer
 var map;
 
-// NOTE: var url api
+// NOTE: évolution future : déclarer une variable "url api" en cas de changement de prestataire/json
 
 var mapZone = {
   // Initialisation du fond de carte Google Map
@@ -242,6 +242,9 @@ var mapZone = {
       }
       // Écoute du bouton de réservation
       bookingButtonElt.addEventListener("click", function(e) {
+        // Scroll vers le bas de la page pour mise en évidence du footer
+        window.scrollTo(0,document.body.scrollHeight);
+
         var redrawButton = document.getElementById("redrawButton");
         var stationName = document.getElementById("name");
         var stationAddress = document.getElementById("address");
@@ -264,6 +267,8 @@ var mapZone = {
           signature.style.boxShadow = "0 0 5px black";
           signature.style.border = "1px #4a15c3 dashed";
           sessionStorage.setItem("stationAddress", booking.address);
+          // Scroll vers le bas de la page pour mise en évidence du footer
+          window.scrollTo(0,document.body.scrollHeight);
         }
       });
 
@@ -296,6 +301,11 @@ var mapZone = {
     ]}
     // Initialisation du clusterer
     var mc = new MarkerClusterer(map, markers, mcOptions);
+    if (sessionStorage.getItem('keepStation') != null) {
+      // Scroll vers le bas de la page pour mise en évidence du footer
+      window.scrollTo(0,document.body.scrollHeight);
+      // NOTE: màj future smooth scroll
+    }
   });
 }
 }

@@ -31,12 +31,33 @@ var bookMe = {
     canvas.setAttribute("width", canvasWidth);
     context.strokeStyle = "darkred";
     canvas.textContent = "Désolé, votre navigateur ne supporte pas Canvas. Mettez-vous à jour"
+
     // Ajout des éléments
     bookingValidation.appendChild(pElt);
     bookingValidation.appendChild(canvas);
-    // Méthodes à lancer selon click down/up
-    canvas.onmousedown = bookMe.trace; // Dessiner
-    canvas.onmouseup = bookMe.stop; // Ne pas dessiner
+
+    // Détection écrans tactiles
+    var deviceType = function(){
+    	try{
+    		document.createEvent("TouchEvent");
+    		return true;
+    	} catch(e){
+    		return false;
+    	}
+    }
+
+    if (deviceType() === true) {
+      console.log("mobile");
+      touchEvents.startup();
+    } else {
+      console.log("desktop");
+      // Méthodes à lancer selon click down/up
+      canvas.onmousedown = bookMe.trace; // Dessiner
+      canvas.onmouseup = bookMe.stop; // Ne pas dessiner
+    }
+
+    // canvas.ontouchstart = bookMe.touchTrace;
+
     // Boutons de controle du canvas
     var clearButtonElt = document.createElement("button");
     clearButtonElt.id = "clearButton";
@@ -145,7 +166,6 @@ var bookMe = {
     } else if (booking.text === "VOTRE VÉLO EST RÉSERVÉ" && state === "on" ) {
       timer.start(state);
     }
-
   },
   // Efface le contenu du canvas
   clearCanvas: function () {
@@ -156,7 +176,7 @@ var bookMe = {
     context.clearRect(x, y, width, height);
     signatureCheck = false;
   },
-  // Dessine après mousedown & trace ligne sur mousemove
+  // Dessine après mousedown, trace ligne sur mousemove
   trace: function (ev) {
     canvas.addEventListener('mousemove', bookMe.mouseMove, false);
 
