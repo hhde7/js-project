@@ -1,5 +1,6 @@
 var footer = document.querySelector("footer");
 var pElt = document.createElement("p");
+var buttonElt = document.createElement("button");
 var message;
 var minutes = Number;
 var secondes = Number;
@@ -31,9 +32,9 @@ var timer = {
       timer.init();
       timer.text();
     } else if (state === "on") { // Reset du timer
-       clearInterval(setTimer);
-       timer.init();
-       timer.text();
+      clearInterval(setTimer);
+      timer.init();
+      timer.text();
     } else {
       clearInterval(setTimer);
       timer.init();
@@ -50,6 +51,11 @@ var timer = {
     message = "IL VOUS RESTE " + minutes +  " MINUTES ET " + secondes + " SECONDES POUR RÉCUPÉRER VOTRE VÉLO";
     pElt.textContent = message;
 
+    // Bouton d'annulation de réservation en cours
+    buttonElt.textContent = "Annuler ma réservation";
+    buttonElt.id = "cancelButton";
+    buttonElt.addEventListener("click", timer.cancel);
+
     // Affichage permanent de la station choisie dans le footer
     if (document.getElementById("bookedAddress") != null) {
 
@@ -65,6 +71,7 @@ var timer = {
 
 
       footer.appendChild(pElt);
+      footer.appendChild(buttonElt);
 
     } else {
       var keepStation = sessionStorage.getItem('keepStation');
@@ -85,7 +92,6 @@ var timer = {
       footer.innerHTML = "";
       message = "TROP TARD...CLIQUEZ SUR UNE STATION POUR CHOISIR UN NOUVEAU VÉLO";
       pElt.textContent = message;
-      // footer.innerHTML = "";
       footer.appendChild(pElt);
       sessionStorage.setItem('footer', footer.innerHTML);
       footer.style.backgroundColor = "#c33a15";
@@ -98,6 +104,14 @@ var timer = {
       } else if (bookingValidation.childNodes.length > 0 ) {
         bookingValidation.innerHTML = "";
       }
+    }
+  },
+  // Annulation de la réservation
+  cancel: function () {
+    var confirmMessage = "ANNULER VOTRE RÉSERVATION ?\n\n" + sessionStorage.getItem('bookedStation') + "\n" + sessionStorage.getItem('bookedAddress');
+    if (confirm(confirmMessage)) {
+      sessionStorage.clear();
+      window.location.reload();
     }
   }
 }

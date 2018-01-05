@@ -14,9 +14,14 @@ window.onload = function storageCheck() {
       pElt.textContent = message;
       footer.appendChild(pElt);
     } else {
+
       footer.innerHTML = "";
+      buttonElt.textContent = "Annuler ma réservation";
+      buttonElt.id = "cancelButton";
+      buttonElt.addEventListener("click", timer.cancel);
       footer.style.backgroundColor = sessionStorage.getItem('footerColor');
       footer.appendChild(pElt);
+      footer.appendChild(buttonElt);
     }
   }
 

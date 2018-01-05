@@ -266,6 +266,15 @@ footer {
   top: 1347px;
 }
 
+#cancelButton {
+  color: white;
+  background-color: #c33a15;
+  border-radius: 3px;
+  border: none;
+  padding: 5px;
+  margin-bottom: 5px;
+  outline: none;
+}
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
