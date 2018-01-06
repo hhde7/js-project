@@ -1,6 +1,6 @@
 # Projet de carte interactive codé en javascript
 
-L'application permettra de réserver un vélo sur le réseau velov de Lyon.
+L'application permettra de réserver un vélo sur le réseau Vélo' V de Lyon.
 
 Le projet comprendra :
 - Un slider explicatif en en-tête
