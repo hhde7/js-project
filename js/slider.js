@@ -1,38 +1,44 @@
+// Ce script gère l'affichage et les comportements du slider.
+// Le tableau slides contient les données relatives à chaque slide.
+
+// Les méthodes le l'objet slider contruisent la slide à afficher et l'injectent
+// dans le conteneur spécifié, ici la <div> dont l'id est "slider-1"
+
 // Tableau des objets slide
 var slides = [
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/velov-bleu1.png",
-    alt: "VéloV bleu électrique",
-    title : "VéloV 2018 - Version électrique",
+    alt: "Vélo' V bleu électrique",
+    title : "Vélo' V - Version électrique",
     text : "Choisir une station sur la carte"
   },
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/velov-bleu2.png",
-    alt: "VéloV bleu électrique",
-    title : "VéloV 2018 - Version électrique",
+    alt: "Vélo' V bleu électrique",
+    title : "Vélo' V - Version électrique",
     text : "Vérifier qu'un vélo est disponible"
   },
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/velov-vert1.png",
-    alt: "VéloV vert",
-    title : "VéloV 2018 - Version classique",
+    alt: "Vélo' V vert",
+    title : "Vélo' V - Version classique",
     text : "Cliquer sur réserver puis signer"
   },
   {
     parentDivId : "container-1",
     src: "images/credited/sources/optimise/borne3.png",
-    alt: "Station VéloV",
-    title : "VéloV 2018 - Nouvelle Borne",
+    alt: "Station Vélo' V",
+    title : "Vélo' V - Nouvelle Borne",
     text : "Votre vélo est réservé pendant 20 minutes !"
   }
 ];
 var i = 0; // Valeur du rang de la slide, dans le tableau d'objets "slides"
 // Objet Slider
 var slider = {
-  // Définit l'ID du slider. Ajoute l'enfant DIV (contenant la slide active) à l'ID parent
+  // Définit l'ID du slider. Ajoute la div contenant la slide active à l'ID parent
   position : function (divId, parentId) {
     var divElt = document.createElement("div");
     divElt.id = divId;

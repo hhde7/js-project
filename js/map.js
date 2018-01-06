@@ -1,3 +1,25 @@
+// Ce script gère l'affichage de la carte Google maps et des stations.
+// La méthode initMap() charge le fond de carte et ses "styles" depuis l'API MAPS
+
+// La méthode fillMap() ajoute à la carte les markers des stations et les
+// regroupe dans des clusters si nécessaire (API MAPS)
+// Les propriétés relatives à chaque marker sont récupérées depuis
+// l'API JCDecaux LYON via la fonction ajaxGet() : (name, status).
+
+// Un clic sur les markers appelle les données de la station correspondante,
+// elles sont alors affichées dans le panneau latéral.
+// Selon les données affichées suite au clic, différentes règles gèrent le style
+// du panneau et du bouton "RÉSERVER MON VÉLO" (couleurs, opacité, textContent du bouton,
+// état du bouton...etc)
+
+// Un clic sur le bouton du panneau latéral lance la méthode correpondant
+// à son textContent. Ces métodes se trouvent dans le script booking.js
+
+// Par souci de lisibilité le numéro de la station est supprimé de sa chaine
+// de caractère "name". La méthode nameFormat() gére les variations et les erreurs de saisie
+// sur cette chaine et renvoi le texte formaté. Ce dernier est utilisé ensuite
+// à différents endroit dans la page.
+
 var markers = []; // Tableaux des markers pour le clusterer
 var map;
 var name;
@@ -235,15 +257,18 @@ var mapZone = {
           // Incrémentaiton fictive du nombre de vélos
           document.getElementById("bikesOk").textContent = this.bikesOk;
         }
+        // Scroll vers details station sur mobile
+        if (screen.width < 768) {
+          document.getElementById("station-details").scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
       });
       // Ajout du marker au tableau markers (ce dernier est utilisé par le clusterer)
       markers.push(marker);
     }
     // Écoute du bouton de réservation
     bookingButtonElt.addEventListener("click", function(e) {
-      // Scroll vers le bas de la page pour mise en évidence du footer
-      window.scrollTo(0,document.body.scrollHeight);
-
       var redrawButton = document.getElementById("redrawButton");
       var stationName = document.getElementById("name");
       var stationAddress = document.getElementById("address");
@@ -266,9 +291,11 @@ var mapZone = {
         signature.style.boxShadow = "0 0 5px black";
         signature.style.border = "1px #4a15c3 dashed";
         sessionStorage.setItem("stationAddress", booking.address);
-        // Scroll vers le bas de la page pour mise en évidence du footer
-        window.scrollTo(0,document.body.scrollHeight);
       }
+      // Scroll vers le bas de la page pour mise en évidence du footer
+        document.getElementById("time-zone").scrollIntoView({
+        behavior: 'smooth'
+      });
     });
     // Définition des icones pour le clusterer, 4 niveaux (0-9), (10-99), (100,999), (1000,9999)
     // Nombre de stations: 339 au 05/01/18
@@ -299,11 +326,6 @@ var mapZone = {
   ]}
   // Initialisation du clusterer
   var mc = new MarkerClusterer(map, markers, mcOptions);
-  if (sessionStorage.getItem('keepStation') != null) {
-    // Scroll vers le bas de la page pour mise en évidence du footer
-    window.scrollTo(0,document.body.scrollHeight);
-    // NOTE: màj future : smooth scroll
-  }
 });
 },
 // Gestion des erreurs de saisie et mise en forme du nom de la station

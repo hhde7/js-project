@@ -1,3 +1,8 @@
+// Ce script gère les actions attendues après avoir cliqué sur "RÉSERVER MON VÉLO"
+// --> Affichage du canvas, des boutons de contrôle et de validation
+
+// Chaque méthode déclenche une phase du processus
+
 var canvas  = document.createElement("canvas");
 var context = canvas.getContext('2d');
 var started = false; // Renvoie l'étât du timer
@@ -72,6 +77,9 @@ var bookMe = {
     var recButton = document.getElementById("recButton");
     clearButton.addEventListener("click", bookMe.clearCanvas);
     recButton.addEventListener("click", function() {
+      document.querySelector("footer").scrollIntoView({
+        behavior: 'smooth'
+      });
       // Enregistrement de la signature si présence dessin dans canvas
       if (signatureCheck === true) {
         bookMe.keep();
@@ -119,9 +127,10 @@ var bookMe = {
       bookingValidation.innerHTML = "";
       var message = "ENREGISTREZ VOTRE SIGNATURE PUIS VALIDEZ";
       bookMe.bookingStep(message);
+
     });
   },
-  // Confirmation de la réservation
+  // Confirmation de la réservation "VALIDER MA RÉSERVATION"
   booked: function (booking) {
     // Reprise des infos de la station
     var bookingValidation = document.getElementById("booking-validation").childNodes[0];
@@ -162,6 +171,7 @@ var bookMe = {
       timer.start(state);
     }
   },
+  // GESTION DE LA FONCTIONNALITÉ SIGNATURE
   // Efface le contenu du canvas
   clearCanvas: function () {
     var x = 0;

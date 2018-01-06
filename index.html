@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html>
-<!-- ///////////////////////// METAS ///////////////////////// -->
+<!-- ///////////////////////////// METAS ///////////////////////////////// -->
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="...à remplir" />
+<meta name="description" content="Vélo' V, votre location de vélo en libre service sur Lyon. Profitez de tarifs attractifs pour tout vos déplacements, ponctuels ou réguliers" />
 
-<!-- ///////////////////////////////// STYLE LINK ///////////////////////////////// -->
+<!-- //////////////////////////// STYLE LINK //////////////////////////// -->
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<!-- ///////////////////////// WEBFONTS ///////////////////////// -->
+
+<!-- ///////////////////////////// WEBFONTS ///////////////////////////// -->
 
 <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 
-
-<!-- ///////////////////////// TWITTER CARD /////////////////////////
+<!-- //////////////////////////// TWITTER CARD //////////////////////////// -->
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="...à remplir">
-<meta name="twitter:title" content="...à remplir">
-<meta name="twitter:description" content="...à remplir">
-<meta name="twitter:image" content="...à remplir">
--->
+<meta name="twitter:site" content="http://lafondationphoenix.com/velov-lyon">
+<meta name="twitter:title" content="Réseau Vélo'V - Louer votre vélo sur Lyon">
+<meta name="twitter:description" content="Vélo' V, votre location de vélo en libre service sur Lyon. Profitez de tarifs attractifs pour tout vos déplacements, ponctuels ou réguliers">
+<meta name="twitter:image" content="http://lafondationphoenix.com/velov-lyon/images/credited/sources/vcard.jpg">
 
-<!-- ///////////////////////// FACEBOOK OPEN GRAPH /////////////////////////
+<!-- ///////////////////////// FACEBOOK OPEN GRAPH /////////////////////////-->
 
 <meta property="og:type" content="business.business" />
-<meta property="og:title" content="...à remplir" />
-<meta property="og:url" content="...à remplir" />
-<meta property="og:image" content="...à remplir" />
-<meta property="business:contact_data:street_address" content="...à remplir" />
-<meta property="business:contact_data:locality" content="...à remplir" />
+<meta property="og:title" content="Réseau Vélo'V - Louer votre vélo sur Lyon" />
+<meta property="og:url" content="http://lafondationphoenix.com/velov-lyon /">
+<meta property="og:image" content="http://lafondationphoenix.com/velov-lyon/images/credited/sources/vcard.jpg" />
+<meta property="business:contact_data:street_address" content="" />
+<meta property="business:contact_data:locality" content="Lyon" />
 <meta property="business:contact_data:region" content="" />
-<meta property="business:contact_data:postal_code" content="...à remplir" />
-<meta property="business:contact_data:country_name" content="...à remplir" />
--->
-<!-- ///////////////////////// FAVICON ///////////////////////// -->
+<meta property="business:contact_data:postal_code" content="69000" />
+<meta property="business:contact_data:country_name" content="France" />
+
+<!-- /////////////////////////////// FAVICON ////////////////////////////// -->
 
 <link rel="icon" type="image/png" href="http://lafondationphoenix.com/velov-lyon/images/credited/sources/optimise/favicon.ico" />
 
+<!-- //////////////////////////////// TITRE //////////////////////////////// -->
 
-<!-- ///////////////////////////////// TITRE ///////////////////////////////// -->
-
-<title>VeloV - Réservez votre vélo</title>
+<title>Vélo' V - Réservez votre vélo sur Lyon</title>
 </head>
 
 <body>
+
+  <!-- //////////////////////////////// LOGO //////////////////////////////// -->
 
   <header>
     <div>
@@ -54,15 +54,29 @@
     </div>
   </header>
 
+  <!-- /////////////////////////////// SLIDER /////////////////////////////// -->
+
   <section id="slider-1">
   </section>
+
+  <!--////////////////////////// BANDE DE SÉPARATION ///////////////////////// -->
+
   <div class="line">
     <div class="map-title-container">
-      <h1>Carte des Stations VéloV</h1>
+      <h1>Carte des Stations Vélo' V</h1>
     </div>
   </div>
+
+  <!-- ///////////// SECTION INFÉRIEURE CARTE ET PANNEAU LATÉRAL ///////////// -->
+
   <section class="booking-panel">
+
+    <!-- //////////// MAP //////////// -->
+
     <div id="map"></div>
+
+    <!-- ////// PANNEAU LATÉRAL ////// -->
+
     <aside class="side-panel">
       <div id="station-details">
         <h2 id="notice">Cliquez sur une station</h2>
@@ -79,22 +93,27 @@
         <p>ADRESSE : <span id="address"></span></p>
       </div>
       <div id="booking-validation"></div>
-        <div id="booking-submit">
+      <div id="booking-submit">
         <button type="button" id="bookingButton" disabled >RÉSERVER MON VÉLO</button>
       </div>
     </aside>
   </section>
 
+  <!-- ///// FOOTER ET RAPPEL DES DONNÉES DE RÉSERVATION ///// -->
+  
   <footer id="time-zone">
-
   </footer>
+
+  <!-- /////////////////////////////// SCRIPTS /////////////////////////////// -->
 
   <script src="js/ajax.js"></script>
 
   <script src="js/slider.js"></script>
+
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt0VFP_O7Iq_2iONCtXWqcGfIe341WN04&callback=mapZone.initMap"></script>
+
   <script src="js/map.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/booking.js"></script>

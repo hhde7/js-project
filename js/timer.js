@@ -1,9 +1,13 @@
+// Ce script gère le contenu du footer et le compte à rebours lorsqu'une
+// réservation est en cours.
+
 var footer = document.querySelector("footer");
 var pElt = document.createElement("p");
 var buttonElt = document.createElement("button");
 var message;
 var minutes = Number;
 var secondes = Number;
+var cancel = false;
 
 var setTimer;
 var state = "off";
@@ -43,7 +47,6 @@ var timer = {
   },
   // Contenu textuel du footer
   text : function () {
-
     // Ajout du caractère 0 pour secondes < 10
     if (secondes < 10) {
       secondes = "0" + secondes;
@@ -69,10 +72,11 @@ var timer = {
       sessionStorage.setItem('bookedAddress', bookedAddress);
       sessionStorage.setItem('bikesOk', Number(bikesNumber.textContent));
 
+      footer.style.opacity = "1";
+      footer.style.color = "white";
 
       footer.appendChild(pElt);
       footer.appendChild(buttonElt);
-
     } else {
       var keepStation = sessionStorage.getItem('keepStation');
       pElt.innerHTML = "";
@@ -92,8 +96,12 @@ var timer = {
       footer.innerHTML = "";
       message = "TROP TARD...CLIQUEZ SUR UNE STATION POUR CHOISIR UN NOUVEAU VÉLO";
       pElt.textContent = message;
+
+      footer.style.opacity = "1";
+      footer.style.color = "white";
+
       footer.appendChild(pElt);
-      sessionStorage.setItem('footer', footer.innerHTML);
+      // sessionStorage.setItem('footer', footer.innerHTML);
       footer.style.backgroundColor = "#c33a15";
       // Suppression du contenu dans le panneau latéral
       var bookingValidation = document.getElementById("booking-validation");
@@ -110,7 +118,9 @@ var timer = {
   cancel: function () {
     var confirmMessage = "ANNULER VOTRE RÉSERVATION ?\n\n" + sessionStorage.getItem('bookedStation') + "\n" + sessionStorage.getItem('bookedAddress');
     if (confirm(confirmMessage)) {
+      footer.innerHTML = "";
       sessionStorage.clear();
+      cancel = true;
       window.location.reload();
     }
   }
