@@ -1,3 +1,19 @@
+/*  37 - HEADER                                 */
+/*  54 - SLIDER                                 */
+/* 109 - BANDEAU GRIS DE SÉPARATION             */
+/* 130 - TEXTE DE LA SLIDE                      */
+/* 144 - SECTION CARTE & PANNEAU LATÉRAL        */
+/* 153 - CARTE GMAP                             */
+/* 161 - PANNEAU DÉTAILS STATION                */
+/* 224 - BOUTON RÉSERVER                        */
+/* 244 - SECTION CANVAS & BOUTONS DE CONTRÔLE   */
+/* 305 - FOOTER                                 */
+/* 344 -  MEDIA QUERIES                         */
+
+/* //////////////////// MOBILE FIRST //////////////////// */
+/* //////////////////// MOBILE FIRST //////////////////// */
+/* //////////////////// MOBILE FIRST //////////////////// */
+
 html {
   width: 100%;
   overflow-x: hidden;
@@ -16,9 +32,10 @@ h1 {
   margin-top: 37px;
   font-weight: lighter;
 }
-/* //////////////////////// LOGO //////////////////////// */
-/* //////////////////////// LOGO //////////////////////// */
-/* //////////////////////// LOGO //////////////////////// */
+
+/* /////////////////////// HEADER /////////////////////// */
+/* /////////////////////// HEADER /////////////////////// */
+/* /////////////////////// HEADER /////////////////////// */
 
 header {
   background-color: rgb(30,30,30);
@@ -89,7 +106,10 @@ header {
   right: 0;
 }
 
-/* |||| INDICATIONS DU SLIDER |||| */
+/* ////////////// BANDEAU GRIS DE SÉPARATION ////////////// */
+/* ////////////// BANDEAU GRIS DE SÉPARATION ////////////// */
+/* ////////////// BANDEAU GRIS DE SÉPARATION ////////////// */
+
 #container-1 h2 {
   position: absolute;
   font-family: 'Dosis', sans-serif;
@@ -107,6 +127,9 @@ header {
   box-shadow: 0px 0px 3px 0px white;
 }
 
+/* |||||||||||||||| TEXTE DE LA SLIDE |||||||||||||||| */
+/* |||||||||||||||| TEXTE DE LA SLIDE |||||||||||||||| */
+
 .line {
   border-top: 5px dashed #15a9c3;
   position: relative;
@@ -118,17 +141,26 @@ header {
   text-align: center;
 }
 
+/* ////////////// SECTION CARTE & PANNEAU LATÉRAL ////////////// */
+/* ////////////// SECTION CARTE & PANNEAU LATÉRAL ////////////// */
+/* ////////////// SECTION CARTE & PANNEAU LATÉRAL ////////////// */
+
 .booking-panel {
   position:relative;
   top: 200px;
 }
-/* CARTE GMAP */
+
+/* ||||||||||||||||||| CARTE GMAP ||||||||||||||||||| */
+/* ||||||||||||||||||| CARTE GMAP ||||||||||||||||||| */
+
 #map {
   height: 350px;
   width: 100%;
 }
 
-/* PANNEAU DÉTAILS STATION */
+/* |||||||||||||| PANNEAU DÉTAILS STATION |||||||||||||| */
+/* |||||||||||||| PANNEAU DÉTAILS STATION |||||||||||||| */
+
 .side-panel {
   position: relative;
   background-color: #84a659;
@@ -189,6 +221,9 @@ header {
   font-size: 50px;
 }
 
+/* |||||||||||||| BOUTON RÉSERVER |||||||||||||| */
+/* |||||||||||||| BOUTON RÉSERVER |||||||||||||| */
+
 #booking-submit button {
   position: relative;
   font-family: 'Dosis', sans-serif;
@@ -205,6 +240,9 @@ header {
   cursor: not-allowed;
   transition: all 0.3s ease;
 }
+
+/* ||||||||| SECTION CANVAS & BOUTONS DE CONTRÔLE ||||||||| */
+/* ||||||||| SECTION CANVAS & BOUTONS DE CONTRÔLE ||||||||| */
 
 canvas {
   display: inline;
@@ -230,7 +268,6 @@ canvas {
   -ms-flex-pack: center;
   justify-content: center;
 }
-
 
 #clearButton,
 #recButton,
@@ -265,6 +302,10 @@ canvas {
   top: -3px;
 }
 
+/* ////////////////////////// FOOTER ////////////////////////// */
+/* ////////////////////////// FOOTER ////////////////////////// */
+/* ////////////////////////// FOOTER ////////////////////////// */
+
 footer {
   font-family: "Inconsolata", sans-serif;
   font-weight: 700;
@@ -295,6 +336,11 @@ footer {
 #cancelButton:hover {
   background-color: #a93313;
 }
+
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
 /* //////////////////////// MEDIA QUERIES //////////////////////// */
@@ -411,7 +457,6 @@ footer {
     padding-bottom: 32px;
     padding-top: 16px;
   }
-
   #booking-submit button {
     width: 92%;
   }
@@ -464,7 +509,6 @@ footer {
     padding-bottom: 32px;
     padding-top: 16px;
   }
-
   #bookingButton {
     top: 29px !important;
   }
