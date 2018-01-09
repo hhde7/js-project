@@ -34,6 +34,7 @@ var mapZone = {
       // Au chargement centrer la carte sur Lyon
       center: {lat : 45.749903598779594, lng: 4.84536886978149},
       streetViewControl: false,
+      clickableIcons: false,
       // Style des éléments de la carte
       styles:[
         {
@@ -293,7 +294,7 @@ var mapZone = {
         sessionStorage.setItem("stationAddress", booking.address);
       }
       // Scroll vers le bas de la page pour mise en évidence du footer
-        document.getElementById("time-zone").scrollIntoView({
+      document.getElementById("time-zone").scrollIntoView({
         behavior: 'smooth'
       });
     });
