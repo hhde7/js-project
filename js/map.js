@@ -178,7 +178,7 @@ var mapZone = {
           // Attribution de l'icone et positionnement du labelOrigin
           icon : {
             url : stationIcon,
-            labelOrigin: new google.maps.Point(20,-10)
+            labelOrigin: new google.maps.Point(15,-10)
           },
           // Défition du texte du label et de son style
           label : {
