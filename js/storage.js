@@ -1,5 +1,6 @@
-// Ce script gère le contrôle des données du sessionStorage au chargement
-// et à la fermeture de la page
+/* Ce script gère le contrôle des données du sessionStorage au chargement
+et à la fermeture de la page
+*/
 
 // Au chargement
 window.onload = function storageCheck() {

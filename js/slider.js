@@ -1,9 +1,9 @@
-// Ce script gère l'affichage et les comportements du slider.
-// Le tableau slides contient les données relatives à chaque slide.
+/*Ce script gère l'affichage et les comportements du slider.
+Le tableau slides contient les données relatives à chaque slide.
 
-// Les méthodes le l'objet slider contruisent la slide à afficher et l'injectent
-// dans le conteneur spécifié, ici la <div> dont l'id est "slider-1"
-
+Les méthodes le l'objet slider contruisent la slide à afficher et l'injectent
+dans le conteneur spécifié, ici la <div> dont l'id est "slider-1"
+*/
 // Tableau des objets slide
 var slides = [
   {
@@ -83,9 +83,7 @@ var slider = {
       } else if (e.keyCode === 39 || e.keyCode === 102 ) {
         slider.nextSlide();
         clearInterval(animSlider);
-      } else { // NOTE: à supprimer
-        // Pas d'action sur les autres touches du clavier
-      };
+      }
     });
   },
   // Définition de la nouvelle slide

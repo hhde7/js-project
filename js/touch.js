@@ -1,5 +1,6 @@
-// Ce script gère les touchEvents de la foncionnalité signature sur mobile
-// ou écrans tactiles.
+/* Ce script gère les touchEvents de la foncionnalité signature sur mobile
+ou écrans tactiles.
+*/
 
 var x,y;
 var touchEvents = {

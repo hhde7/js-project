@@ -1,8 +1,8 @@
-// Ce script gère les actions attendues après avoir cliqué sur "RÉSERVER MON VÉLO"
-// --> Affichage du canvas, des boutons de contrôle et de validation
+/* Ce script gère les actions attendues après avoir cliqué sur "RÉSERVER MON VÉLO"
+--> Affichage du canvas, des boutons de contrôle et de validation
 
-// Chaque méthode déclenche une phase du processus
-
+ Chaque méthode déclenche une phase du processus
+*/
 var canvas  = document.createElement("canvas");
 var context = canvas.getContext('2d');
 var started = false; // Renvoie l'étât du timer

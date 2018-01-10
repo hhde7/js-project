@@ -1,5 +1,6 @@
-// Ce script gère le contenu du footer et le compte à rebours lorsqu'une
-// réservation est en cours.
+/* Ce script gère le contenu du footer et le compte à rebours lorsqu'une
+réservation est en cours.
+*/
 
 var footer = document.querySelector("footer");
 var pElt = document.createElement("p");
